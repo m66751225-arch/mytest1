@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>mObywatel 2.0 | Dokumenty</title>
+    <title>mObywatel 2.0</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
@@ -13,23 +13,11 @@
             --m-bg: #f2f3f7;
             --m-card-bg: #ffffff;
             --m-text-black: #1d1d1d;
-            --m-text-gray: #4a4a4a;
             --m-label: #808080;
         }
 
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--m-bg);
-            color: var(--m-text-black);
-            min-height: 100vh;
-        }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body, html { margin: 0; padding: 0; font-family: 'Roboto', sans-serif; background-color: var(--m-bg); color: var(--m-text-black); min-height: 100vh; overflow-x: hidden; }
 
         .view { display: none; width: 100%; min-height: 100vh; background: var(--m-bg); }
         .view.active { display: block; }
@@ -49,126 +37,109 @@
         .header-sticky h1 { font-size: 19px; margin: 0; font-weight: 700; color: #1d1d1d; }
 
         /* ADMIN PANEL */
-        #view-admin { background: #fff; display: flex; justify-content: center; align-items: center; padding: 20px; }
-        .admin-card { width: 100%; max-width: 450px; padding: 30px; border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border: 1px solid #eee; }
-        .admin-card h2 { color: var(--m-blue); font-weight: 900; text-align: center; margin-top: 0; }
+        #view-admin { background: #fff; padding: 20px; }
+        .admin-card { width: 100%; max-width: 500px; margin: 0 auto; padding: 20px; border-radius: 20px; border: 1px solid #eee; }
+        .admin-card h2 { color: var(--m-blue); text-align: center; margin-bottom: 25px; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .form-group { margin-bottom: 15px; }
+        .form-group.full { grid-column: span 2; }
         .form-group label { display: block; font-size: 11px; font-weight: 700; color: var(--m-label); text-transform: uppercase; margin-bottom: 5px; }
-        .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 16px; background: #f9f9f9; }
-        .btn-gen { width: 100%; padding: 15px; background: var(--m-blue); color: #fff; border: none; border-radius: 10px; font-weight: 900; font-size: 16px; cursor: pointer; }
+        .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; background: #f9f9f9; }
+        .btn-gen { width: 100%; padding: 15px; background: var(--m-blue); color: #fff; border: none; border-radius: 10px; font-weight: 900; font-size: 16px; cursor: pointer; margin-top: 10px; }
 
         /* DASHBOARD */
-        .dash-top { background: #fff; padding: 20px; border-bottom: 1px solid #f0f0f0; }
-        .dash-logo { height: 35px; }
-        .dash-user { padding: 25px 20px; }
-        .dash-user h2 { font-size: 32px; font-weight: 900; margin: 5px 0; }
-        .mdowod-card { background: linear-gradient(100deg, #014a93 0%, #0037a5 100%); border-radius: 20px; margin: 15px; padding: 25px; color: #fff; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 20px rgba(1,74,147,0.2); }
+        .dash-top { background: #fff; padding: 15px 20px; border-bottom: 1px solid #f0f0f0; display: flex; justify-content: space-between; align-items: center; }
+        .dash-logo { height: 32px; }
+        .dash-user { padding: 20px; }
+        .dash-user h2 { font-size: 32px; font-weight: 900; margin: 0; }
+        .mdowod-card { background: linear-gradient(100deg, #014a93 0%, #0037a5 100%); border-radius: 20px; margin: 15px; padding: 25px; color: #fff; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 20px rgba(1,74,147,0.2); cursor: pointer; }
         .mdowod-card .txt .t { font-size: 22px; font-weight: 900; }
         .mdowod-card .ico { width: 50px; height: 50px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; }
 
         /* M-DOWOD DOCUMENT */
-        .doc-header-bg { background: linear-gradient(180deg, #fff 0%, #f2f3f7 100%); padding-bottom: 1px; }
-        .refresh-info { text-align: center; font-size: 12px; color: var(--m-text-gray); margin: 15px 0; font-weight: 400; }
-        
+        .refresh-info { text-align: center; font-size: 11px; color: #666; margin: 15px 0; }
         .card-main {
-            background: #fff;
-            border-radius: 12px;
-            margin: 0 16px;
-            padding: 20px;
-            display: flex;
-            position: relative;
-            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-            background-image: url('https://m0bywat3l.vercel.app/img/dowodnowybg.svg');
-            background-size: cover;
+            background: #fff; border-radius: 12px; margin: 0 16px; padding: 20px; display: flex; position: relative;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05);
+            background-image: url('https://m0bywat3l.vercel.app/img/dowodnowybg.svg'); background-size: cover;
         }
+        .card-photo-sec { flex: 0 0 125px; margin-right: 18px; position: relative; }
+        .card-photo { width: 100%; border-radius: 14px; filter: grayscale(100%); mask-image: linear-gradient(to bottom, black 80%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%); }
+        .flag-img { position: absolute; bottom: 0; right: 0; width: 40px; }
+        .card-info h3 { margin: 0; font-size: 22px; font-weight: 900; line-height: 1.1; }
+        .card-info .label-bottom { font-size: 10px; color: var(--m-label); margin-bottom: 12px; margin-top: 2px; }
+        .data-item { margin-bottom: 10px; }
+        .data-item .l { font-size: 9px; color: var(--m-label); text-transform: uppercase; font-weight: 700; }
+        .data-item .v { font-size: 15px; font-weight: 700; }
 
-        .card-photo-sec { flex: 0 0 135px; margin-right: 20px; position: relative; }
-        .card-photo {
-            width: 100%;
-            border-radius: 16px;
-            filter: grayscale(100%);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            background: #eee;
-            mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-        }
-        .flag-img { position: absolute; bottom: 0; right: 0; width: 45px; z-index: 5; }
-        
-        .card-info h3 { margin: 0; font-size: 24px; font-weight: 900; line-height: 1.1; }
-        .card-info .label-bottom { font-size: 11px; color: var(--m-label); margin-bottom: 15px; margin-top: 2px; }
-        
-        .data-item { margin-bottom: 12px; }
-        .data-item .l { font-size: 10px; color: var(--m-label); text-transform: uppercase; font-weight: 700; }
-        .data-item .v { font-size: 16px; font-weight: 700; color: #1d1d1d; }
+        /* SUBPAGES DATA */
+        .data-list { padding: 10px 16px; }
+        .data-row { background: #fff; margin-bottom: 1px; padding: 15px 20px; }
+        .data-row:first-child { border-radius: 12px 12px 0 0; }
+        .data-row:last-child { border-radius: 0 0 12px 12px; margin-bottom: 20px; }
+        .data-row .lab { font-size: 11px; color: var(--m-label); margin-bottom: 4px; text-transform: uppercase; font-weight: 700; }
+        .data-row .val { font-size: 16px; font-weight: 700; color: #1d1d1d; }
 
-        .status-valid {
-            background: #fff;
-            border-radius: 12px;
-            margin: 15px 16px;
-            padding: 18px;
-            display: flex;
-            align-items: center;
-            box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.05);
-        }
+        .status-valid { background: #fff; border-radius: 12px; margin: 15px 16px; padding: 18px; display: flex; align-items: center; box-shadow: 0px 5px 10px rgba(0,0,0,0.03); }
         .status-valid i { color: var(--m-green); font-size: 26px; margin-right: 15px; }
         .status-valid span { font-weight: 700; font-size: 17px; }
 
-        .data-box {
-            background: #fff;
-            border-radius: 12px;
-            margin: 12px 16px;
-            padding: 18px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0px 2px 5px rgba(0,0,0,0.03);
-        }
-        .data-box span { font-weight: 700; font-size: 15px; }
-        .data-box i { color: var(--m-blue); }
+        .link-box { background: #fff; border-radius: 12px; margin: 10px 16px; padding: 18px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+        .link-box span { font-weight: 700; font-size: 15px; }
+        .link-box i { color: #ccc; }
 
-        /* BOTTOM BAR */
-        .bottom-bar { position: fixed; bottom: 0; width: 100%; height: 85px; background: #fff; border-top: 1px solid #e0e0e0; display: flex; justify-content: space-around; align-items: center; padding-bottom: 10px; }
+        /* NAVIGATION */
+        .bottom-bar { position: fixed; bottom: 0; width: 100%; height: 85px; background: #fff; border-top: 1px solid #e0e0e0; display: flex; justify-content: space-around; align-items: center; padding-bottom: 10px; z-index: 100; }
         .bar-item { display: flex; flex-direction: column; align-items: center; font-size: 10px; color: #8a8a8a; text-decoration: none; font-weight: 500; }
         .bar-item i { font-size: 24px; margin-bottom: 4px; }
         .bar-item.active { color: var(--m-blue); }
 
-        #photo-preview { width: 100%; height: 130px; border: 2px dashed #ddd; border-radius: 15px; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #fcfcfc; }
-        #preview-img { max-height: 100%; border-radius: 5px; }
+        #photo-preview { width: 100%; height: 100px; border: 2px dashed #ddd; border-radius: 10px; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #fcfcfc; }
+        #preview-img { max-height: 100%; }
         input[type="file"] { position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
-
     </style>
 </head>
 <body>
 
-    <!-- ADMIN -->
-    <div id="view-admin" class="view active">
+    <!-- VIEW: ADMIN FORM -->
+    <div id="view-admin" class="view">
         <div class="admin-card">
-            <h2 style="font-size: 26px;">Generator mDowodu</h2>
+            <h2>Kreator Dokumentu</h2>
             <form id="admin-form">
-                <div class="form-group"><label>Imię</label><input type="text" id="in-n1" placeholder="Jan" required></div>
-                <div class="form-group"><label>Nazwisko</label><input type="text" id="in-n2" placeholder="Kowalski" required></div>
-                <div class="form-group"><label>Data Urodzenia</label><input type="text" id="in-db" placeholder="15.05.1995" required></div>
-                <div class="form-group">
-                    <label>Płeć</label>
-                    <select id="in-sx"><option value="M">Mężczyzna</option><option value="K">Kobieta</option></select>
-                </div>
-                <div class="form-group">
-                    <label>Twoje zdjęcie</label>
-                    <div id="photo-preview">
-                        <span id="photo-hint">Dotknij, aby dodać</span>
-                        <input type="file" id="in-photo" accept="image/*">
-                        <img id="preview-img" style="display:none">
+                <div class="form-grid">
+                    <div class="form-group"><label>Imię</label><input type="text" id="in-n1" placeholder="Jan" required></div>
+                    <div class="form-group"><label>Drugie Imię</label><input type="text" id="in-n2" placeholder="Marian"></div>
+                    <div class="form-group"><label>Nazwisko</label><input type="text" id="in-n3" placeholder="Kowalski" required></div>
+                    <div class="form-group"><label>Nazwisko Rodowe</label><input type="text" id="in-nr" placeholder="Kowalski"></div>
+                    <div class="form-group"><label>Data Urodzenia</label><input type="text" id="in-db" placeholder="15.05.1995" required></div>
+                    <div class="form-group"><label>Miejsce Urodzenia</label><input type="text" id="in-pb" placeholder="Warszawa"></div>
+                    <div class="form-group"><label>Imię Ojca</label><input type="text" id="in-fn" placeholder="Andrzej"></div>
+                    <div class="form-group"><label>Imię Matki</label><input type="text" id="in-mn" placeholder="Anna"></div>
+                    <div class="form-group"><label>Płeć</label><select id="in-sx"><option value="M">Mężczyzna</option><option value="K">Kobieta</option></select></div>
+                    <div class="form-group"><label>Numer Dowodu</label><input type="text" id="in-dn" placeholder="ABC 123456"></div>
+                    <div class="form-group"><label>Data Wydania</label><input type="text" id="in-di" placeholder="10.01.2023"></div>
+                    <div class="form-group"><label>Data Ważności</label><input type="text" id="in-de" placeholder="10.01.2033"></div>
+                    <div class="form-group full"><label>Organ Wydający</label><input type="text" id="in-or" placeholder="PREZYDENT MIASTA ST. WARSZAWY"></div>
+                    <div class="form-group full">
+                        <label>Zdjęcie Profilowe</label>
+                        <div id="photo-preview">
+                            <span id="photo-hint">Dotknij, aby wybrać</span>
+                            <input type="file" id="in-photo" accept="image/*">
+                            <img id="preview-img" style="display:none">
+                        </div>
                     </div>
                 </div>
-                <button type="submit" class="btn-gen">WYGENERUJ DOWÓD</button>
+                <button type="submit" class="btn-gen">ZAPISZ I URUCHOM</button>
             </form>
+            <p style="font-size: 10px; color: #888; text-align: center; margin-top: 20px;">Dane zostaną zapisane tylko w Twojej przeglądarce.</p>
         </div>
     </div>
 
-    <!-- DASHBOARD -->
+    <!-- VIEW: DASHBOARD -->
     <div id="view-dash" class="view">
         <div class="dash-top">
             <img src="https://info.mobywatel.gov.pl/common/img/mobywatel-logo.svg" class="dash-logo">
+            <i class="far fa-bell" style="font-size: 22px;"></i>
         </div>
         <div class="dash-user">
             <p style="margin:0; color:#666;">Dzień dobry,</p>
@@ -179,28 +150,28 @@
             <div class="ico"><i class="fas fa-id-card"></i></div>
         </div>
         <div style="padding:0 15px; display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-            <div class="data-box" style="margin:0; padding:25px 15px; flex-direction:column; text-align:center;">
-                <i class="fas fa-car" style="font-size:24px; margin-bottom:10px;"></i><span>mPrawo jazdy</span>
+            <div class="link-box" style="margin:0; padding:25px 15px; flex-direction:column; text-align:center;">
+                <i class="fas fa-car" style="font-size:24px; margin-bottom:10px; color: var(--m-blue);"></i><span>mPrawo jazdy</span>
             </div>
-            <div class="data-box" style="margin:0; padding:25px 15px; flex-direction:column; text-align:center;">
-                <i class="fas fa-file-medical" style="font-size:24px; margin-bottom:10px;"></i><span>E-recepty</span>
+            <div class="link-box" style="margin:0; padding:25px 15px; flex-direction:column; text-align:center;">
+                <i class="fas fa-file-medical" style="font-size:24px; margin-bottom:10px; color: var(--m-blue);"></i><span>E-recepty</span>
             </div>
         </div>
         <div class="bottom-bar">
             <div class="bar-item active"><i class="fas fa-home"></i><span>Start</span></div>
             <div class="bar-item" onclick="showView('doc')"><i class="fas fa-user-circle"></i><span>Dokumenty</span></div>
             <div class="bar-item"><i class="fas fa-qrcode"></i><span>Kod QR</span></div>
-            <div class="bar-item"><i class="fas fa-ellipsis-h"></i><span>Więcej</span></div>
+            <div class="bar-item" onclick="clearData()"><i class="fas fa-cog"></i><span>Reset</span></div>
         </div>
     </div>
 
-    <!-- DOCUMENT -->
+    <!-- VIEW: MAIN DOCUMENT -->
     <div id="view-doc" class="view">
         <div class="header-sticky">
             <a href="javascript:void(0)" class="back-btn" onclick="showView('dash')"><i class="fas fa-chevron-left"></i></a>
             <h1>mDowód</h1>
         </div>
-        <div class="doc-header-bg">
+        <div style="background: #fff; padding-bottom: 20px;">
             <div class="refresh-info">Czas odświeżenia: <span id="clock">--:--:-- --.--.----</span></div>
             <div class="card-main">
                 <div class="card-photo-sec">
@@ -209,17 +180,17 @@
                 </div>
                 <div class="card-info">
                     <h3 id="doc-n1">JAN</h3>
-                    <h3 id="doc-n2">KOWALSKI</h3>
+                    <h3 id="doc-n3">KOWALSKI</h3>
                     <div class="label-bottom">Imię (imiona) i nazwisko</div>
                     <div class="data-item"><div class="l">Obywatelstwo</div><div class="v">POLSKIE</div></div>
                     <div class="data-item"><div class="l">Data urodzenia</div><div class="v" id="doc-db">15.05.1995</div></div>
-                    <div class="data-item"><div class="l">Numer PESEL</div><div class="v" id="doc-pesel">95051512345</div></div>
+                    <div class="data-item"><div class="l">Numer PESEL</div><div class="v" id="doc-pesel">-----------</div></div>
                 </div>
             </div>
         </div>
         <div class="status-valid"><i class="fas fa-check-circle"></i><span>Dokument ważny</span></div>
-        <div class="data-box"><span>Dane dokumentu</span><i class="fas fa-chevron-right"></i></div>
-        <div class="data-box"><span>Twoje dodatkowe dane</span><i class="fas fa-chevron-right"></i></div>
+        <div class="link-box" onclick="showView('doc-data')"><span>Dane dokumentu</span><i class="fas fa-chevron-right"></i></div>
+        <div class="link-box" onclick="showView('extra-data')"><span>Twoje dodatkowe dane</span><i class="fas fa-chevron-right"></i></div>
         <div style="height:100px;"></div>
         <div class="bottom-bar">
             <div class="bar-item" onclick="showView('dash')"><i class="fas fa-home"></i><span>Start</span></div>
@@ -229,7 +200,44 @@
         </div>
     </div>
 
+    <!-- VIEW: DOCUMENT DATA -->
+    <div id="view-doc-data" class="view">
+        <div class="header-sticky">
+            <a href="javascript:void(0)" class="back-btn" onclick="showView('doc')"><i class="fas fa-chevron-left"></i></a>
+            <h1>Dane dokumentu</h1>
+        </div>
+        <div class="data-list">
+            <div class="data-row"><div class="lab">Seria i numer</div><div class="val" id="d-dn">--- ---</div></div>
+            <div class="data-row"><div class="lab">Organ wydający</div><div class="val" id="d-or">---</div></div>
+            <div class="data-row"><div class="lab">Data wydania</div><div class="val" id="d-di">--.--.----</div></div>
+            <div class="data-row"><div class="lab">Data ważności</div><div class="val" id="d-de">--.--.----</div></div>
+        </div>
+    </div>
+
+    <!-- VIEW: EXTRA DATA -->
+    <div id="view-extra-data" class="view">
+        <div class="header-sticky">
+            <a href="javascript:void(0)" class="back-btn" onclick="showView('doc')"><i class="fas fa-chevron-left"></i></a>
+            <h1>Twoje dodatkowe dane</h1>
+        </div>
+        <div class="data-list">
+            <div class="data-row"><div class="lab">Nazwisko rodowe</div><div class="val" id="d-nr">---</div></div>
+            <div class="data-row"><div class="lab">Płeć</div><div class="val" id="d-sx">---</div></div>
+            <div class="data-row"><div class="lab">Miejsce urodzenia</div><div class="val" id="d-pb">---</div></div>
+            <div class="data-row"><div class="lab">Imię ojca</div><div class="val" id="d-fn">---</div></div>
+            <div class="data-row"><div class="lab">Imię matki</div><div class="val" id="d-mn">---</div></div>
+        </div>
+    </div>
+
     <script>
+        let userData = JSON.parse(localStorage.getItem('mObywatelData')) || null;
+
+        function showView(id) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById('view-' + id).classList.add('active');
+            window.scrollTo(0,0);
+        }
+
         function generatePESEL(db, sx) {
             const p = db.split('.'); if (p.length !== 3) return "00000000000";
             let d = parseInt(p[0]), m = parseInt(p[1]), y = parseInt(p[2]);
@@ -244,24 +252,54 @@
             return b + ((10 - (s % 10)) % 10);
         }
 
-        function showView(v) {
-            document.querySelectorAll('.view').forEach(x => x.classList.remove('active'));
-            document.getElementById('view-' + v).classList.add('active');
+        function applyData() {
+            if(!userData) return showView('admin');
+            
+            document.getElementById('dash-name').innerText = userData.n1;
+            document.getElementById('doc-n1').innerText = (userData.n1 + " " + userData.n2).trim().toUpperCase();
+            document.getElementById('doc-n3').innerText = userData.n3.toUpperCase();
+            document.getElementById('doc-db').innerText = userData.db;
+            document.getElementById('doc-pesel').innerText = userData.pesel;
+            document.getElementById('doc-photo').src = userData.photo;
+
+            // Dane dokumentu
+            document.getElementById('d-dn').innerText = userData.dn || "---";
+            document.getElementById('d-or').innerText = userData.or || "---";
+            document.getElementById('d-di').innerText = userData.di || "--.--.----";
+            document.getElementById('d-de').innerText = userData.de || "--.--.----";
+
+            // Dane dodatkowe
+            document.getElementById('d-nr').innerText = userData.nr || userData.n3;
+            document.getElementById('d-sx').innerText = userData.sx === 'M' ? 'Mężczyzna' : 'Kobieta';
+            document.getElementById('d-pb').innerText = userData.pb || "---";
+            document.getElementById('d-fn').innerText = userData.fn || "---";
+            document.getElementById('d-mn').innerText = userData.mn || "---";
+
+            showView('dash');
         }
 
         document.getElementById('admin-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            const n1 = document.getElementById('in-n1').value;
-            const n2 = document.getElementById('in-n2').value;
-            const db = document.getElementById('in-db').value;
-            const sx = document.getElementById('in-sx').value;
-            const pesel = generatePESEL(db, sx);
-            document.getElementById('dash-name').innerText = n1;
-            document.getElementById('doc-n1').innerText = n1.toUpperCase();
-            document.getElementById('doc-n2').innerText = n2.toUpperCase();
-            document.getElementById('doc-db').innerText = db;
-            document.getElementById('doc-pesel').innerText = pesel;
-            showView('dash');
+            const data = {
+                n1: document.getElementById('in-n1').value,
+                n2: document.getElementById('in-n2').value,
+                n3: document.getElementById('in-n3').value,
+                nr: document.getElementById('in-nr').value,
+                db: document.getElementById('in-db').value,
+                pb: document.getElementById('in-pb').value,
+                fn: document.getElementById('in-fn').value,
+                mn: document.getElementById('in-mn').value,
+                sx: document.getElementById('in-sx').value,
+                dn: document.getElementById('in-dn').value,
+                di: document.getElementById('in-di').value,
+                de: document.getElementById('in-de').value,
+                or: document.getElementById('in-or').value,
+                photo: document.getElementById('preview-img').src,
+                pesel: generatePESEL(document.getElementById('in-db').value, document.getElementById('in-sx').value)
+            };
+            userData = data;
+            localStorage.setItem('mObywatelData', JSON.stringify(data));
+            applyData();
         });
 
         document.getElementById('in-photo').addEventListener('change', function(e) {
@@ -269,23 +307,30 @@
             if (f) {
                 const r = new FileReader();
                 r.onload = e => {
-                    const src = e.target.result;
-                    document.getElementById('preview-img').src = src;
+                    document.getElementById('preview-img').src = e.target.result;
                     document.getElementById('preview-img').style.display = 'block';
-                    document.getElementById('doc-photo').src = src;
                     document.getElementById('photo-hint').style.display = 'none';
                 };
                 r.readAsDataURL(f);
             }
         });
 
+        function clearData() {
+            if(confirm("Czy na pewno chcesz wyczyścić dane i wrócić do formularza?")) {
+                localStorage.removeItem('mObywatelData');
+                location.reload();
+            }
+        }
+
         function updateClock() {
             const n = new Date();
-            const time = n.toLocaleTimeString('pl-PL');
-            const date = n.toLocaleDateString('pl-PL');
-            document.getElementById('clock').innerText = `${time} ${date}`;
+            const el = document.getElementById('clock');
+            if (el) el.innerText = n.toLocaleTimeString('pl-PL') + ' ' + n.toLocaleDateString('pl-PL');
         }
         setInterval(updateClock, 1000); updateClock();
+
+        // Inicjalizacja
+        applyData();
     </script>
 </body>
 </html>
