@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>mObywatel 2.0</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        :root {
+            --primary: #165ef8;
+            --primary-dark: #0c4dc3;
+            --bg: #F5F6FB;
+            --card-bg: #FFFFFF;
+            --text-main: #000000;
+            --text-secondary: #696969;
+            --status-green: #2bbd51;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden;
+            overscroll-behavior: none;
+        }
+
+        /* Widoki */
+        .view {
+            display: none;
+            width: 100%;
+            min-height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        /* Panel Admina */
+        #view-admin {
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .admin-box {
+            width: 100%;
+            max-width: 450px;
+            padding: 30px;
+            background: #fff;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+            border: 1px solid #f0f0f0;
+        }
+
+        .admin-box h2 {
+            color: var(--primary);
+            text-align: center;
+            font-weight: 900;
+            margin-bottom: 25px;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #555;
+            text-transform: uppercase;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #ddd;
+            border-radius: 14px;
+            font-size: 16px;
+            background: #f9f9f9;
+            transition: all 0.2s;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(22, 94, 248, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 900;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .submit-btn:active {
+            transform: scale(0.98);
+            background: var(--primary-dark);
+        }
+
+        /* Logo w Adminie */
+        .admin-logo {
+            display: block;
+            margin: 0 auto 20px;
+            height: 50px;
+        }
+
+        /* Dashboard Styles */
+        .h-main {
+            background: #fff;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #f0f0f0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .h-main .l-sec {
+            display: flex;
+            align-items: center;
+        }
+
+        .h-main .l-sec img {
+            height: 38px;
+            margin-right: 12px;
+        }
+
+        .h-main .l-sec span {
+            font-size: 19px;
+            font-weight: 900;
+        }
+
+        .user-greeting {
+            padding: 24px 20px 10px;
+        }
+
+        .user-greeting p {
+            margin: 0;
+            color: #666;
+            font-size: 15px;
+        }
+
+        .user-greeting h2 {
+            margin: 4px 0 0;
+            font-size: 30px;
+            font-weight: 900;
+        }
+
+        .main-card {
+            background: linear-gradient(100deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 22px;
+            margin: 16px;
+            padding: 24px;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 12px 24px rgba(22,94,248,0.25);
+            transition: transform 0.2s;
+        }
+
+        .main-card:active {
+            transform: scale(0.97);
+        }
+
+        .main-card .txt .t {
+            font-size: 21px;
+            font-weight: 900;
+        }
+
+        .main-card .txt .s {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 4px;
+        }
+
+        .main-card .ico {
+            width: 52px;
+            height: 52px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .section-label {
+            padding: 20px 20px 12px;
+            font-size: 18px;
+            font-weight: 900;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            padding: 0 16px 100px;
+        }
+
+        .service-item {
+            background: #fff;
+            border-radius: 18px;
+            padding: 22px 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+            transition: transform 0.2s;
+        }
+
+        .service-item i {
+            font-size: 30px;
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .service-item span {
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* Widok Dokumentu */
+        .h-doc {
+            background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #fff;
+            padding: 50px 16px 25px;
+            text-align: center;
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 24px;
+            position: relative;
+        }
+
+        .back-link {
+            position: absolute;
+            left: 16px;
+            top: 20px;
+            color: #fff;
+            font-size: 20px;
+            text-decoration: none;
+            padding: 10px;
+        }
+
+        .h-doc h2 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 900;
+        }
+
+        .h-doc p {
+            margin: 4px 0 0;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        .time-display {
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+            margin: 12px 0 8px;
+            font-weight: 400;
+        }
+
+        .doc-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 12px 16px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+            display: flex;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .doc-pattern {
+            position: absolute;
+            right: -20px;
+            top: -20px;
+            opacity: 0.04;
+            width: 180px;
+            transform: rotate(15deg);
+            pointer-events: none;
+        }
+
+        .photo-side {
+            flex: 0 0 120px;
+            margin-right: 18px;
+            position: relative;
+        }
+
+        .photo-side .main-photo {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background: #eee;
+        }
+
+        .photo-side .flag-overlay {
+            position: absolute;
+            bottom: -8px;
+            right: -8px;
+            width: 42px;
+            z-index: 10;
+        }
+
+        .info-side {
+            flex: 1;
+        }
+
+        .info-side h3 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 900;
+            line-height: 1.1;
+            color: #000;
+            text-transform: uppercase;
+        }
+
+        .info-side .label-name {
+            font-size: 10px;
+            color: var(--text-secondary);
+            margin: 4px 0 16px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .info-row {
+            margin-bottom: 12px;
+        }
+
+        .info-row .lab {
+            font-size: 9px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        .info-row .val {
+            font-size: 15px;
+            font-weight: 700;
+            color: #111;
+            margin-top: 1px;
+        }
+
+        .status-bar {
+            background: #fff;
+            border-radius: 16px;
+            padding: 16px 20px;
+            margin: 12px 16px;
+            display: flex;
+            align-items: center;
+            border: 1px solid #efefef;
+        }
+
+        .status-bar i {
+            color: var(--status-green);
+            font-size: 24px;
+            margin-right: 14px;
+        }
+
+        .status-bar span {
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .collapsible-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 20px;
+            margin: 12px 16px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .collapsible-item span {
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .collapsible-item i {
+            color: #ccc;
+        }
+
+        /* Nawigacja Dolna */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 80px;
+            background: #fff;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 1000;
+            padding-bottom: 12px;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 10px;
+            color: #8a8a8a;
+            text-decoration: none;
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .nav-item i {
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        /* Przyciski Akcji */
+        .add-btn {
+            position: fixed;
+            bottom: 95px;
+            right: 20px;
+            background: var(--primary);
+            color: #fff;
+            padding: 14px 22px;
+            border-radius: 50px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 6px 16px rgba(22,94,248,0.3);
+            z-index: 90;
+        }
+
+        .add-btn i {
+            margin-right: 8px;
+        }
+
+        /* Animacje */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        #photo-preview {
+            width: 100%;
+            height: 150px;
+            border: 2px dashed #ddd;
+            border-radius: 14px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #f9f9f9;
+            position: relative;
+        }
+
+        #photo-preview img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        #photo-preview span {
+            color: #aaa;
+            font-size: 12px;
+        }
+
+        input[type="file"] {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- WIDOK: PANEL ADMINA -->
+    <div id="view-admin" class="view active">
+        <div class="admin-box">
+            <img src="https://info.mobywatel.gov.pl/common/img/mobywatel-logo.svg" class="admin-logo" alt="Logo">
+            <h2>Menedżer Profilu</h2>
+            <form id="admin-form">
+                <div class="form-group">
+                    <label>Imię</label>
+                    <input type="text" id="in-n1" placeholder="np. Jan" required>
+                </div>
+                <div class="form-group">
+                    <label>Nazwisko</label>
+                    <input type="text" id="in-n2" placeholder="np. Kowalski" required>
+                </div>
+                <div class="form-group">
+                    <label>Data Urodzenia</label>
+                    <input type="text" id="in-db" placeholder="DD.MM.YYYY" required>
+                </div>
+                <div class="form-group">
+                    <label>Płeć</label>
+                    <select id="in-sx">
+                        <option value="M">Mężczyzna</option>
+                        <option value="K">Kobieta</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Zdjęcie Profilowe</label>
+                    <div id="photo-preview">
+                        <span>Kliknij, aby wybrać zdjęcie</span>
+                        <input type="file" id="in-photo" accept="image/*">
+                        <img id="preview-img" style="display:none">
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">AKTUALIZUJ PROFIL</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- WIDOK: DASHBOARD (START) -->
+    <div id="view-dashboard" class="view">
+        <div class="h-main">
+            <div class="l-sec">
+                <img src="https://info.mobywatel.gov.pl/common/img/mobywatel-logo.svg">
+                <span>mObywatel</span>
+            </div>
+            <i class="far fa-bell" style="font-size: 22px; color: #333;"></i>
+        </div>
+        
+        <div class="user-greeting animate">
+            <p>Dzień dobry,</p>
+            <h2 id="dash-user-name">Użytkownik</h2>
+        </div>
+
+        <div class="main-card animate" onclick="showView('document')">
+            <div class="txt">
+                <div class="t">mDowód</div>
+                <div class="s">Dokument tożsamości</div>
+            </div>
+            <div class="ico"><i class="fas fa-id-card"></i></div>
+        </div>
+
+        <div class="section-label animate">Usługi</div>
+        <div class="services-grid animate">
+            <div class="service-item"><i class="fas fa-car"></i><span>mPrawo jazdy</span></div>
+            <div class="service-item"><i class="fas fa-file-medical"></i><span>E-recepty</span></div>
+            <div class="service-item"><i class="fas fa-graduation-cap"></i><span>mLegitymacja</span></div>
+            <div class="service-item"><i class="fas fa-history"></i><span>Pojazd</span></div>
+        </div>
+
+        <div class="add-btn animate"><i class="fas fa-plus"></i> Dodaj dokument</div>
+
+        <div class="bottom-nav">
+            <div class="nav-item active"><i class="fas fa-home"></i><span>Start</span></div>
+            <div class="nav-item" onclick="showView('document')"><i class="fas fa-user-circle"></i><span>Dokumenty</span></div>
+            <div class="nav-item"><i class="fas fa-th-large"></i><span>Usługi</span></div>
+            <div class="nav-item"><i class="fas fa-qrcode"></i><span>Kod QR</span></div>
+            <div class="nav-item"><i class="fas fa-ellipsis-h"></i><span>Więcej</span></div>
+        </div>
+    </div>
+
+    <!-- WIDOK: DOKUMENT (MDOWÓD) -->
+    <div id="view-document" class="view">
+        <div class="h-doc">
+            <a href="javascript:void(0)" class="back-link" onclick="showView('dashboard')"><i class="fas fa-arrow-left"></i></a>
+            <h2>mDowód</h2>
+            <p>Rzeczpospolita Polska</p>
+        </div>
+
+        <div class="time-display">Czas: <span id="live-time">--:--:-- --.--.----</span></div>
+
+        <div class="doc-card animate">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Coat_of_arms_of_Poland.svg" class="doc-pattern">
+            <div class="photo-side">
+                <img src="" id="doc-photo" class="main-photo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Flag_of_Poland_%28animated%29.gif" class="flag-overlay">
+            </div>
+            <div class="info-side">
+                <h3 id="doc-n1">IMIĘ</h3>
+                <h3 id="doc-n2">NAZWISKO</h3>
+                <div class="label-name">Imię i nazwisko</div>
+                
+                <div class="info-row">
+                    <div class="lab">Obywatelstwo</div>
+                    <div class="val">POLSKIE</div>
+                </div>
+                <div class="info-row">
+                    <div class="lab">Data urodzenia</div>
+                    <div class="val" id="doc-db">01.01.1990</div>
+                </div>
+                <div class="info-row">
+                    <div class="lab">Numer PESEL</div>
+                    <div class="val" id="doc-pesel">00000000000</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="status-bar animate">
+            <i class="fas fa-check-circle"></i>
+            <span>Dokument ważny</span>
+        </div>
+
+        <div class="collapsible-item animate">
+            <span>Dane dokumentu</span>
+            <i class="fas fa-chevron-right"></i>
+        </div>
+        <div class="collapsible-item animate">
+            <span>Twoje dodatkowe dane</span>
+            <i class="fas fa-chevron-right"></i>
+        </div>
+
+        <div style="height: 100px;"></div>
+
+        <div class="bottom-nav">
+            <div class="nav-item" onclick="showView('dashboard')"><i class="fas fa-home"></i><span>Start</span></div>
+            <div class="nav-item active"><i class="fas fa-user-circle"></i><span>Dokumenty</span></div>
+            <div class="nav-item"><i class="fas fa-th-large"></i><span>Usługi</span></div>
+            <div class="nav-item"><i class="fas fa-qrcode"></i><span>Kod QR</span></div>
+            <div class="nav-item"><i class="fas fa-ellipsis-h"></i><span>Więcej</span></div>
+        </div>
+    </div>
+
+    <script>
+        // Dane użytkownika w pamięci
+        let userData = {
+            n1: "",
+            n2: "",
+            db: "",
+            sx: "",
+            photo: "",
+            pesel: ""
+        };
+
+        // Funkcja generująca PESEL (Twoja logika z PHP przeniesiona na JS)
+        function generatePESEL(birthDate, gender) {
+            const parts = birthDate.split('.');
+            if (parts.length !== 3) return "00000000000";
+            
+            let d = parseInt(parts[0]);
+            let m = parseInt(parts[1]);
+            let y = parseInt(parts[2]);
+            
+            let yy = (y % 100).toString().padStart(2, '0');
+            let mm = m;
+            if (y >= 2000) mm += 20;
+            mm = mm.toString().padStart(2, '0');
+            let dd = d.toString().padStart(2, '0');
+            
+            let zzz = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+            
+            // Cyfra płci: parzysta dla kobiet, nieparzysta dla mężczyzn
+            let x;
+            if (gender === 'K') {
+                x = Math.floor(Math.random() * 5) * 2;
+            } else {
+                x = Math.floor(Math.random() * 5) * 2 + 1;
+            }
+            
+            let base = yy + mm + dd + zzz + x;
+            
+            // Suma kontrolna
+            const w = [1, 3, 7, 9, 1, 3, 7, 9, 1, 3];
+            let s = 0;
+            for (let i = 0; i < 10; i++) {
+                s += parseInt(base[i]) * w[i];
+            }
+            let c = (10 - (s % 10)) % 10;
+            
+            return base + c;
+        }
+
+        // Przełączanie widoków
+        function showView(viewId) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById('view-' + viewId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // Obsługa formularza
+        document.getElementById('admin-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            userData.n1 = document.getElementById('in-n1').value;
+            userData.n2 = document.getElementById('in-n2').value;
+            userData.db = document.getElementById('in-db').value;
+            userData.sx = document.getElementById('in-sx').value;
+            userData.pesel = generatePESEL(userData.db, userData.sx);
+
+            // Aktualizacja UI
+            document.getElementById('dash-user-name').innerText = userData.n1;
+            document.getElementById('doc-n1').innerText = userData.n1;
+            document.getElementById('doc-n2').innerText = userData.n2;
+            document.getElementById('doc-db').innerText = userData.db;
+            document.getElementById('doc-pesel').innerText = userData.pesel;
+            if (userData.photo) {
+                document.getElementById('doc-photo').src = userData.photo;
+            }
+
+            showView('dashboard');
+        });
+
+        // Obsługa wgrywania zdjęcia
+        document.getElementById('in-photo').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    userData.photo = event.target.result;
+                    const preview = document.getElementById('preview-img');
+                    preview.src = userData.photo;
+                    preview.style.display = 'block';
+                    document.querySelector('#photo-preview span').style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Zegar czasu rzeczywistego
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('pl-PL');
+            const dateStr = now.toLocaleDateString('pl-PL');
+            const el = document.getElementById('live-time');
+            if (el) el.innerText = `${timeStr} ${dateStr}`;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // Blokada zoomu na telefonach
+        document.addEventListener('touchstart', function (event) {
+            if (event.touches.length > 1) {
+                event.preventDefault();
+            }
+        }, { passive: false });
+
+    </script>
+</body>
+</html>
