@@ -1,0 +1,21 @@
+{
+    "name": "mObywatel",
+    "short_name": "mObywatel",
+    "display": "standalone",
+    "background_color": "#FFFFFF",
+    "theme_color": "#FFFFFF",
+    "description": "Aplikacja demonstracyjna dla gitów",
+  "icons": [
+    {
+      "src": "coi_common_ui_ic_mobywatel_logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "coi_common_ui_ic_mobywatel_logo.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}
