@@ -8,119 +8,113 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         :root {
-            /* DARK THEME (Default) */
             --bg: #121212;
             --card: #1c1c1e;
-            --card-inner: #2c2c2e;
             --text: #ffffff;
             --text-gray: #8e8e93;
             --m-blue: #007aff;
-            --m-green: #32d74b;
             --border: #2c2c2e;
-            --copy-bg: #002e5d;
         }
 
         [data-theme="light"] {
             --bg: #f2f2f7;
             --card: #ffffff;
-            --card-inner: #f2f2f7;
             --text: #000000;
-            --text-gray: #8e8e93;
-            --m-blue: #007aff;
-            --m-green: #248a3d;
             --border: #e5e5ea;
-            --copy-bg: #e5e5ea;
         }
 
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; transition: background 0.2s, color 0.2s; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body, html { margin: 0; padding: 0; font-family: 'Roboto', sans-serif; background-color: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
 
         .view { display: none; width: 100%; min-height: 100vh; padding-bottom: 100px; }
-        .view.active { display: block; }
+        .view.active { display: block !important; }
 
         /* HEADER */
-        .top-nav { display: flex; justify-content: space-between; padding: 15px 20px; align-items: center; position: sticky; top: 0; background: var(--bg); z-index: 100; }
-        .logo-eagle { width: 32px; }
-        .top-right { display: flex; gap: 20px; align-items: center; }
+        .header { display: flex; justify-content: space-between; padding: 15px 20px; align-items: center; position: sticky; top: 0; background: var(--bg); z-index: 100; }
+        .logo-eagle { height: 32px; }
+        .header-icons { display: flex; gap: 15px; align-items: center; }
+        .header-icons img { width: 24px; }
 
-        .page-title { padding: 0 20px; margin-bottom: 5px; }
-        .page-title h1 { font-size: 34px; font-weight: 900; margin: 0; }
-        .top-links { padding: 5px 20px 20px; display: flex; gap: 25px; color: var(--m-blue); font-weight: 700; font-size: 16px; }
+        .title-sec { padding: 0 20px; }
+        .title-sec h1 { font-size: 34px; font-weight: 900; margin: 0; }
+        .links-sec { padding: 10px 20px 20px; display: flex; gap: 20px; color: var(--m-blue); font-weight: 700; }
 
-        /* DASHBOARD */
-        .mdowod-card { 
+        /* CARDS */
+        .dash-card { 
             background: linear-gradient(135deg, #0059b3 0%, #002e5d 100%); 
-            margin: 15px; border-radius: 20px; padding: 25px; min-height: 190px; 
+            margin: 15px; border-radius: 22px; padding: 25px; height: 185px; 
             position: relative; box-shadow: 0 10px 20px rgba(0,0,0,0.3); cursor: pointer;
         }
-        .mdowod-card h2 { font-size: 26px; margin: 0; color: white; }
-        .mdowod-card .eagle-watermark { position: absolute; right: 20px; top: 20px; width: 35px; opacity: 0.8; }
+        .dash-card h2 { font-size: 26px; margin: 0; color: white; }
+        .dash-card .eagle-bg { position: absolute; right: 20px; top: 20px; width: 40px; }
 
-        /* M-DOWOD VIEW */
-        .doc-header { background: var(--card); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); position: sticky; top:0; z-index: 101; }
-        .doc-header .back { color: var(--m-blue); font-size: 18px; text-decoration: none; font-weight: 500; }
-        
-        .light-card { 
+        /* mDOWOD VIEW */
+        .doc-bar { background: var(--card); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); position: sticky; top:0; z-index: 101; }
+        .doc-bar .back { color: var(--m-blue); font-size: 18px; text-decoration: none; display: flex; align-items: center; }
+        .doc-bar .back img { width: 12px; margin-right: 8px; transform: rotate(180deg); }
+
+        .main-doc-card { 
             background: #dbeaf9; border-radius: 18px; margin: 15px; padding: 22px; display: flex; color: #000; 
-            background-image: url('https://m0bywat3l.vercel.app/img/dowodnowybg.svg'); background-size: cover; 
+            background-image: url('dowodnowybg.svg'); background-size: cover; 
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        .light-card .photo-box { flex: 0 0 120px; margin-right: 18px; position: relative; }
-        .light-card .photo-box .main-img { width: 100%; border-radius: 12px; filter: grayscale(1); }
-        .light-card .photo-box .flag-anim { position: absolute; bottom: -5px; left: -5px; width: 45px; }
+        .photo-container { flex: 0 0 120px; margin-right: 18px; position: relative; }
+        .photo-container .user-img { width: 100%; border-radius: 12px; filter: grayscale(1); }
+        .photo-container .flag-anim { position: absolute; bottom: -5px; left: -5px; width: 45px; }
 
-        .info-box h3 { margin: 0; font-size: 23px; font-weight: 900; line-height: 1.1; }
-        .info-box .lab { font-size: 10px; color: #666; margin-bottom: 12px; }
-        .info-box .row { margin-bottom: 10px; }
-        .info-box .row .l { font-size: 9px; color: #666; text-transform: uppercase; font-weight: 800; }
-        .info-box .row .v { font-size: 16px; font-weight: 800; }
+        .info-container h3 { margin: 0; font-size: 22px; font-weight: 900; line-height: 1.1; }
+        .info-container .label-low { font-size: 10px; color: #666; margin-bottom: 12px; }
+        .info-container .data-bit { margin-bottom: 10px; }
+        .info-container .data-bit .l { font-size: 9px; color: #666; font-weight: 800; text-transform: uppercase; }
+        .info-container .data-bit .v { font-size: 16px; font-weight: 800; }
 
-        .status-valid { background: rgba(50, 215, 75, 0.1); border: 1px solid rgba(50, 215, 75, 0.2); border-radius: 12px; margin: 15px; padding: 16px; display: flex; align-items: center; }
-        .status-valid i { color: var(--m-green); font-size: 24px; margin-right: 15px; }
-        .status-valid span { color: var(--m-green); font-weight: 800; font-size: 17px; }
+        .status-box { background: rgba(50, 215, 75, 0.1); border: 1px solid rgba(50, 215, 75, 0.2); border-radius: 12px; margin: 15px; padding: 16px; display: flex; align-items: center; }
+        .status-box img { width: 24px; margin-right: 15px; }
+        .status-box span { color: #32d74b; font-weight: 800; font-size: 17px; }
 
         /* ACTIONS */
-        .actions-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; padding: 10px 15px 25px; }
-        .action-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
-        .action-circ { width: 55px; height: 55px; background: var(--card-inner); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--m-blue); margin-bottom: 8px; }
-        .action-lb { font-size: 10px; line-height: 1.2; }
+        .actions-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; padding: 10px 15px 20px; }
+        .act-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .act-circle { width: 55px; height: 55px; background: #2c2c2e; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
+        .act-circle img { width: 24px; }
+        .act-label { font-size: 10px; line-height: 1.2; color: var(--text); }
 
-        /* DETAILS BOXES */
-        .details-section { background: var(--card); border-radius: 18px; margin: 0 15px 20px; padding: 20px; }
-        .details-section .title { font-size: 12px; color: var(--text-gray); margin-bottom: 5px; }
-        .details-section .val-big { font-size: 32px; font-weight: 900; }
-        .copy-btn { background: var(--copy-bg); color: var(--m-blue); padding: 6px 16px; border-radius: 20px; font-weight: 700; border: none; font-size: 13px; }
-
-        .data-list-row { margin-bottom: 18px; }
-        .data-list-row .lb { font-size: 11px; color: var(--text-gray); margin-bottom: 4px; }
-        .data-list-row .vl { font-size: 19px; font-weight: 700; }
+        /* DATA BOXES */
+        .data-block { background: var(--card); border-radius: 18px; margin: 15px; padding: 20px; }
+        .data-block .tag { font-size: 11px; color: var(--text-gray); margin-bottom: 4px; }
+        .data-block .val-huge { font-size: 32px; font-weight: 900; margin-bottom: 10px; display: block; }
+        .data-row-ui { margin-bottom: 18px; }
+        .data-row-ui .lb { font-size: 11px; color: var(--text-gray); margin-bottom: 4px; }
+        .data-row-ui .vl { font-size: 19px; font-weight: 700; }
 
         /* LISTS */
-        .sect-label { font-size: 18px; font-weight: 900; padding: 25px 20px 12px; }
-        .ui-list { background: var(--card); border-radius: 18px; margin: 0 15px 20px; overflow: hidden; }
-        .ui-item { display: flex; align-items: center; padding: 18px 15px; border-bottom: 1px solid var(--border); text-decoration: none; color: var(--text); }
-        .ui-item i.ico { width: 35px; font-size: 20px; margin-right: 15px; text-align: center; }
-        .ui-item .txt { flex: 1; font-weight: 500; font-size: 16.5px; }
-        .ui-item i.ch { color: var(--text-gray); font-size: 14px; opacity: 0.5; }
+        .sect-title { font-size: 18px; font-weight: 900; padding: 25px 20px 12px; }
+        .list-container { background: var(--card); border-radius: 18px; margin: 0 15px 20px; overflow: hidden; }
+        .list-row { display: flex; align-items: center; padding: 18px 15px; border-bottom: 1px solid var(--border); text-decoration: none; color: var(--text); }
+        .list-row .icon-box { width: 35px; margin-right: 15px; text-align: center; }
+        .list-row .icon-box img { width: 22px; }
+        .list-row .label-box { flex: 1; font-weight: 500; font-size: 17px; }
+        .list-row .arrow-box img { width: 14px; opacity: 0.5; }
 
         /* BOTTOM NAV */
-        .bottom-nav { position: fixed; bottom: 0; width: 100%; height: 90px; background: var(--card); border-top: 1px solid var(--border); display: flex; justify-content: space-around; align-items: center; padding-bottom: 15px; z-index: 1000; }
-        .nav-link { display: flex; flex-direction: column; align-items: center; color: var(--text-gray); font-size: 10px; text-decoration: none; flex: 1; }
-        .nav-link i { font-size: 24px; margin-bottom: 5px; }
-        .nav-link.active { color: var(--m-blue); }
+        .navbar { position: fixed; bottom: 0; width: 100%; height: 90px; background: var(--card); border-top: 1px solid var(--border); display: flex; justify-content: space-around; align-items: center; padding-bottom: 15px; z-index: 1000; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; color: var(--text-gray); font-size: 10px; text-decoration: none; flex: 1; }
+        .nav-item img { width: 24px; margin-bottom: 5px; opacity: 0.5; }
+        .nav-item.active { color: var(--m-blue); }
+        .nav-item.active img { opacity: 1; filter: saturate(100%) brightness(150%); }
 
-        /* SETUP */
+        /* FORM */
         #view-setup { padding: 25px; display: flex; align-items: center; justify-content: center; }
-        .setup-win { background: var(--card); padding: 30px; border-radius: 25px; width: 100%; max-width: 480px; }
-        .setup-win input { width: 100%; padding: 14px; margin-bottom: 12px; background: var(--card-inner); border: 1px solid var(--border); border-radius: 12px; color: var(--text); }
+        .setup-card { background: var(--card); padding: 30px; border-radius: 25px; width: 100%; max-width: 480px; }
+        .setup-card input, .setup-card select { width: 100%; padding: 14px; margin-bottom: 12px; background: #2c2c2e; border: 1px solid var(--border); border-radius: 12px; color: white; }
     </style>
 </head>
 <body>
 
     <!-- KONFIGURACJA -->
-    <div id="view-setup" class="view">
-        <div class="setup-win">
-            <h2 style="text-align:center">Kreator Profilu</h2>
+    <div id="view-setup" class="view" style="display: block;">
+        <div class="setup-card">
+            <h2 style="text-align:center">Kreator mObywatela</h2>
             <form id="setup-form">
                 <input type="text" id="in-n1" placeholder="Imię" required>
                 <input type="text" id="in-n3" placeholder="Nazwisko" required>
@@ -129,8 +123,8 @@
                 <input type="text" id="in-fn" placeholder="Imię ojca">
                 <input type="text" id="in-mn" placeholder="Imię matki">
                 <input type="text" id="in-adr" placeholder="Adres zameldowania">
-                <div style="border: 2px dashed var(--border); padding: 20px; text-align: center; border-radius: 15px; margin-bottom: 15px; position: relative;">
-                    <span>Dodaj zdjęcie</span>
+                <div style="border: 2px dashed #444; padding: 20px; text-align: center; border-radius: 15px; margin-bottom: 15px; position: relative;">
+                    <span>Wybierz zdjęcie</span>
                     <input type="file" id="in-photo" accept="image/*" style="position:absolute; width:100%; height:100%; opacity:0; top:0; left:0;">
                     <img id="setup-preview" style="display:none; max-height: 80px; margin: 10px auto;">
                 </div>
@@ -139,180 +133,183 @@
         </div>
     </div>
 
-    <!-- START (DOKUMENTY) -->
+    <!-- START -->
     <div id="view-dash" class="view">
-        <div class="top-nav">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Coat_of_arms_of_Poland.svg" class="logo-eagle">
-            <div class="top-right">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Coat_of_arms_of_Poland.svg" style="width:24px; opacity:0.8;">
-                <i class="far fa-bell" style="font-size: 24px;"></i>
+        <div class="header">
+            <img src="coi_common_ui_ic_mobywatel_logo.svg" class="logo-eagle">
+            <div class="header-icons">
+                <img src="godlo.gif" style="width: 20px;">
+                <img src="ab013_notifications.svg">
             </div>
         </div>
-        <div class="page-title"><h1>Dokumenty</h1></div>
-        <div class="top-links"><span>Dostosuj</span><span>Dodaj</span></div>
-        <div class="mdowod-card" onclick="showView('doc')">
-            <img src="https://m0bywat3l.vercel.app/img/godlo.gif" class="eagle-watermark">
+        <div class="title-sec"><h1>Dokumenty</h1></div>
+        <div class="links-sec"><span>Dostosuj</span><span>Dodaj</span></div>
+        <div class="dash-card" onclick="showView('doc')">
+            <img src="godlo.gif" class="eagle-bg">
             <h2>mDowód</h2>
-            <i class="fas fa-id-card" style="font-size: 50px; opacity: 0.1; position: absolute; bottom: 25px; right: 25px;"></i>
+            <img src="coi_common_ui_ic_document_id.svg" style="position: absolute; bottom: 20px; right: 20px; width: 50px; opacity: 0.1;">
         </div>
     </div>
 
-    <!-- DOKUMENT (SZCZEGÓŁY) -->
+    <!-- mDOWOD -->
     <div id="view-doc" class="view">
-        <div class="doc-header">
-            <a href="javascript:void(0)" class="back" onclick="showView('dash')"><i class="fas fa-chevron-left"></i> Wróć</a>
+        <div class="doc-bar">
+            <a href="javascript:void(0)" class="back" onclick="showView('dash')"><img src="arrow.svg" style="transform: rotate(180deg);"> Wróć</a>
             <span style="font-weight: 900; font-size: 19px;">mDowód</span>
-            <i class="far fa-question-circle" style="font-size: 22px; color: var(--m-blue);"></i>
+            <img src="coi_common_ui_ic_help.svg" style="width: 22px;">
         </div>
         <div style="text-align: center; color: var(--text-gray); font-size: 12px; margin: 15px 0;">Czas: <span id="clock">--:--:-- --.--.----</span></div>
-        <div class="light-card">
-            <div class="photo-box">
-                <img src="" id="doc-photo" class="main-img">
-                <img src="https://m0bywat3l.vercel.app/img/flaga.gif" class="flag-anim">
+        <div class="main-doc-card">
+            <div class="photo-container">
+                <img src="" id="doc-photo" class="user-img">
+                <img src="flaga.gif" class="flag-anim">
             </div>
-            <div class="info-box">
+            <div class="info-container">
                 <h3 id="doc-n1">IMIĘ</h3><h3 id="doc-n3">NAZWISKO</h3>
-                <div class="lab">Imię (imiona) i nazwisko</div>
-                <div class="row"><div class="l">Obywatelstwo</div><div class="v">POLSKIE</div></div>
-                <div class="row"><div class="l">Data urodzenia</div><div class="v" id="doc-db">--.--.----</div></div>
-                <div class="row"><div class="l">Numer PESEL</div><div class="v" id="doc-pesel">-----------</div></div>
+                <div class="label-low">Imię (imiona) i nazwisko</div>
+                <div class="data-bit"><div class="l">Obywatelstwo</div><div class="v">POLSKIE</div></div>
+                <div class="data-bit"><div class="l">Data urodzenia</div><div class="v" id="doc-db">--.--.----</div></div>
+                <div class="data-bit"><div class="l">Numer PESEL</div><div class="v" id="doc-pesel">-----------</div></div>
             </div>
         </div>
-        <div class="status-valid"><i class="fas fa-check-circle"></i><span>Dokument ważny</span></div>
-        
-        <div class="actions-grid">
-            <div class="action-item"><div class="action-circ"><i class="fas fa-qrcode"></i></div><div class="action-lb">Potwierdź dane</div></div>
-            <div class="action-item"><div class="action-circ"><i class="fas fa-id-card"></i></div><div class="action-lb">Dane dowodu</div></div>
-            <div class="action-item"><div class="action-circ"><i class="fas fa-lock"></i></div><div class="action-lb">Zastrzeż PESEL</div></div>
-            <div class="action-item"><div class="action-circ"><i class="fas fa-ellipsis-h"></i></div><div class="action-lb">Pozostałe</div></div>
+        <div class="status-box"><img src="checkmark.svg"><span>Dokument ważny</span></div>
+        <div class="actions-bar">
+            <div class="act-item"><div class="act-circle"><img src="ai001_scanner_qr.svg"></div><div class="act-label">Potwierdź dane</div></div>
+            <div class="act-item"><div class="act-circle"><img src="ai003_check_document.svg"></div><div class="act-label">Dane dowodu</div></div>
+            <div class="act-item"><div class="act-circle"><img src="da008_zastrzez_pesel.svg"></div><div class="act-label">Zastrzeż PESEL</div></div>
+            <div class="act-item"><div class="act-circle"><img src="ab010_more.svg"></div><div class="act-label">Pozostałe</div></div>
         </div>
-
-        <div class="details-section">
-            <div class="title">Seria i numer mDowodu</div>
+        <div class="data-block">
+            <div class="tag">Seria i numer mDowodu</div>
             <div style="display:flex; justify-content:space-between; align-items:center;">
-                <span class="val-big" id="doc-serial">--- ---</span>
-                <button class="copy-btn">Kopiuj</button>
+                <span class="val-huge" id="doc-serial">--- ---</span>
+                <button style="background: #002e5d; color: #007aff; border:none; padding: 6px 15px; border-radius: 20px; font-weight:700;">Kopiuj</button>
             </div>
-            <p style="font-size: 13px; margin-top: 15px; opacity: 0.9;">Dane mDowodu i dowodu osobistego są inne - to dwa różne dokumenty.</p>
+            <p style="font-size: 13px; margin-top: 15px;">Dane mDowodu i dowodu osobistego są inne - to dwa różne dokumenty.</p>
         </div>
-
-        <div class="details-section">
-            <div class="data-list-row"><div class="lb">Imię ojca</div><div class="vl" id="d-fn">---</div></div>
-            <div class="data-list-row"><div class="lb">Imię matki</div><div class="vl" id="d-mn">---</div></div>
-            <div class="data-list-row"><div class="lb">Miejsce urodzenia</div><div class="vl" id="d-pb">---</div></div>
-            <div class="data-list-row"><div class="lb">Adres zameldowania</div><div class="vl" id="d-adr">---</div></div>
-            <div class="data-list-row"><div class="lb">Dane paszportu</div><div class="vl">Brak aktywnych danych paszportowych</div></div>
-        </div>
-
-        <div class="ui-list" style="margin: 0 15px 30px; padding: 18px; display: flex; justify-content: space-between; align-items: center;">
-            <div><div style="font-size: 13px; opacity:0.8;">Ostatnia aktualizacja</div><div style="font-size: 20px; font-weight: 900; margin-top:5px;">24.12.2024</div></div>
-            <button style="background: var(--copy-bg); color: var(--m-blue); border: none; padding: 10px 20px; border-radius: 20px; font-weight: 700;">Aktualizuj</button>
+        <div class="data-block">
+            <div class="data-row-ui"><div class="lb">Imię ojca</div><div class="vl" id="d-fn">---</div></div>
+            <div class="data-row-ui"><div class="lb">Imię matki</div><div class="vl" id="d-mn">---</div></div>
+            <div class="data-row-ui"><div class="lb">Miejsce urodzenia</div><div class="vl" id="d-pb">---</div></div>
+            <div class="data-row-ui"><div class="lb">Adres zameldowania</div><div class="vl" id="d-adr">---</div></div>
         </div>
     </div>
 
     <!-- USŁUGI -->
     <div id="view-services" class="view">
-        <div class="top-nav"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Coat_of_arms_of_Poland.svg" class="logo-eagle"></div>
-        <div class="page-title"><h1>Usługi</h1></div>
-        
-        <div class="sect-label">Ulubione</div>
-        <div class="ui-list">
-            <a href="#" class="ui-item"><i class="fas fa-wallet ico" style="color:#00c9a7;"></i><span class="txt">Blikom</span><i class="fas fa-chevron-right ch"></i></a>
-            <a href="#" class="ui-item"><i class="fas fa-lock ico" style="color:#9f38bc;"></i><span class="txt">Zastrzeż PESEL</span><i class="fas fa-chevron-right ch"></i></a>
+        <div class="header"><img src="coi_common_ui_ic_mobywatel_logo.svg" class="logo-eagle"></div>
+        <div class="title-sec"><h1>Usługi</h1></div>
+        <div class="sect-title">Ulubione</div>
+        <div class="list-container">
+            <a href="#" class="list-row"><div class="icon-box"><img src="da008_zastrzez_pesel.svg"></div><div class="label-box">Zastrzeż PESEL</div><div class="arrow-box"><img src="arrow.svg"></div></a>
+            <a href="#" class="list-row"><div class="icon-box"><img src="da001_punkty_karne.svg"></div><div class="label-box">Punkty karne</div><div class="arrow-box"><img src="arrow.svg"></div></a>
         </div>
-
-        <div class="sect-label">Sprawy urzędowe</div>
-        <div class="ui-list">
-            <a href="#" class="ui-item"><i class="fas fa-file-alt ico"></i><span class="txt">Załatw sprawę</span><i class="fas fa-chevron-right ch"></i></a>
-            <a href="#" class="ui-item"><i class="fas fa-user-check ico" style="color:#007aff;"></i><span class="txt">Odbiór dowodu</span><i class="fas fa-chevron-right ch"></i></a>
-            <a href="#" class="ui-item"><i class="fas fa-video ico"></i><span class="txt">E-wizyta w ZUS</span><i class="fas fa-chevron-right ch"></i></a>
-            <a href="#" class="ui-item"><i class="fas fa-box-open ico"></i><span class="txt">Wybory</span><i class="fas fa-chevron-right ch"></i></a>
+        <div class="sect-title">Sprawy urzędowe</div>
+        <div class="list-container">
+            <a href="#" class="list-row"><div class="icon-box"><img src="ac001_services.svg"></div><div class="label-box">Załatw sprawę</div><div class="arrow-box"><img src="arrow.svg"></div></a>
+            <a href="#" class="list-row"><div class="icon-box"><img src="b002_framed_person.svg"></div><div class="label-box">Odbiór dowodu</div><div class="arrow-box"><img src="arrow.svg"></div></a>
         </div>
+    </div>
 
-        <div class="sect-label">Kierowca i pojazdy</div>
-        <div class="ui-list">
-            <a href="#" class="ui-item"><i class="fas fa-id-badge ico" style="color:#007aff;"></i><span class="txt">Uprawnienia kierowcy</span><i class="fas fa-chevron-right ch"></i></a>
-            <a href="#" class="ui-item"><i class="fas fa-car ico" style="color:#007aff;"></i><span class="txt">Historia pojazdu</span><i class="fas fa-chevron-right ch"></i></a>
+    <!-- KOD QR MENU -->
+    <div id="view-qr-menu" class="view">
+        <div class="header"><img src="coi_common_ui_ic_mobywatel_logo.svg" class="logo-eagle"></div>
+        <div class="title-sec"><h1>Kod QR</h1></div>
+        <div style="padding: 15px 20px; font-size: 15px; line-height: 1.4;">Dzięki tej funkcji zalogujesz się do usług w internecie i potwierdzisz cyfrowe dokumenty...</div>
+        <div class="list-container" style="margin-top: 20px;">
+            <div class="list-row" style="padding: 25px 15px;">
+                <div class="icon-box"><img src="ai001_scanner_qr.svg" style="width:30px;"></div>
+                <div class="label-box">Zeskanuj kod QR</div>
+                <div class="arrow-box"><img src="arrow.svg"></div>
+            </div>
+            <div class="list-row" style="padding: 25px 15px;" onclick="showView('qr-real')">
+                <div class="icon-box"><img src="ai001_scanner_qr.svg" style="width:30px;"></div>
+                <div class="label-box">Pokaż kod QR</div>
+                <div class="arrow-box"><img src="arrow.svg"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- KOD QR REAL -->
+    <div id="view-qr-real" class="view">
+        <div class="doc-bar"><a href="javascript:void(0)" class="back" onclick="showView('qr-menu')"><img src="arrow.svg" style="transform: rotate(180deg);"> Wróć</a><span style="font-weight:900;">Kod QR</span></div>
+        <div style="text-align:center; padding: 40px 20px;">
+            <div style="background:white; padding:20px; border-radius:15px; display:inline-block; margin-bottom:20px;"><img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=mOby-Final-Final" style="width:250px;"></div>
+            <div style="font-size: 40px; font-weight: 800; margin-bottom: 20px;">213755</div>
+            <div style="font-weight:600;">Kod wygaśnie za: <span id="qr-timer">4 min 00 sek.</span></div>
         </div>
     </div>
 
     <!-- WIĘCEJ -->
     <div id="view-more" class="view">
-        <div class="top-nav"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Coat_of_arms_of_Poland.svg" class="logo-eagle"></div>
-        <div class="page-title"><h1>Więcej</h1></div>
-        
-        <div class="sect-label">Twoje dane</div>
-        <div class="ui-list">
-            <a href="javascript:void(0)" class="ui-item" onclick="toggleTheme()"><i class="fas fa-palette ico"></i><span class="txt">Wygląd (Przełącz tryb)</span><i class="fas fa-chevron-right ch"></i></a>
-            <a href="#" class="ui-item"><i class="fas fa-globe ico"></i><span class="txt">Język aplikacji</span><i class="fas fa-chevron-right ch"></i></a>
-            <a href="#" class="ui-item"><i class="fas fa-certificate ico"></i><span class="txt">Wydane certyfikaty</span><i class="fas fa-chevron-right ch"></i></a>
-            <a href="#" class="ui-item"><i class="far fa-bell ico"></i><span class="txt">Powiadomienia</span><i class="fas fa-chevron-right ch"></i></a>
-        </div>
-
-        <div class="sect-label">Pozostałe</div>
-        <div class="ui-list">
-            <a href="#" class="ui-item"><i class="far fa-question-circle ico"></i><span class="txt">Pomoc techniczna</span><i class="fas fa-chevron-right ch"></i></a>
-            <a href="#" class="ui-item"><i class="far fa-star ico"></i><span class="txt">Oceń aplikację</span><i class="fas fa-chevron-right ch"></i></a>
-            <a href="#" class="ui-item"><i class="fas fa-lightbulb ico"></i><span class="txt">Zagłosuj na pomysł</span><i class="fas fa-chevron-right ch"></i></a>
-            <a href="javascript:void(0)" class="ui-item" onclick="localStorage.clear(); location.reload();"><i class="fas fa-power-off ico" style="color:#ff453a;"></i><span class="txt" style="color:#ff453a;">Dezaktywuj aplikację</span><i class="fas fa-chevron-right ch"></i></a>
+        <div class="header"><img src="coi_common_ui_ic_mobywatel_logo.svg" class="logo-eagle"></div>
+        <div class="title-sec"><h1>Więcej</h1></div>
+        <div class="sect-title">Twoje dane</div>
+        <div class="list-container">
+            <a href="javascript:void(0)" class="list-row" onclick="toggleTheme()"><div class="icon-box"><img src="aa008_change_password.svg"></div><div class="label-box">Wygląd (Ciemny/Jasny)</div><div class="arrow-box"><img src="arrow.svg"></div></a>
+            <a href="#" class="list-row"><div class="icon-box"><img src="aa009_fingerprint.svg"></div><div class="label-box">Biometria</div><div class="arrow-box"><img src="arrow.svg"></div></a>
+            <a href="javascript:void(0)" class="list-row" onclick="localStorage.clear(); location.reload();"><div class="icon-box"><img src="ab010_more.svg" style="filter: hue-rotate(300deg);"></div><div class="label-box" style="color:#ff453a;">Dezaktywuj aplikację</div><div class="arrow-box"><img src="arrow.svg"></div></a>
         </div>
     </div>
 
-    <!-- NAV BAR -->
-    <div class="bottom-nav">
-        <a href="javascript:void(0)" class="nav-link active" id="nav-dash" onclick="showView('dash')"><i class="fas fa-id-card"></i><span>Dokumenty</span></a>
-        <a href="javascript:void(0)" class="nav-link" id="nav-services" onclick="showView('services')"><i class="fas fa-folder"></i><span>Usługi</span></a>
-        <a href="javascript:void(0)" class="nav-link"><i class="fas fa-qrcode"></i><span>Kod QR</span></a>
-        <a href="javascript:void(0)" class="nav-link" id="nav-more" onclick="showView('more')"><i class="fas fa-th-large"></i><span>Więcej</span></a>
+    <!-- NAV -->
+    <div class="navbar">
+        <a href="javascript:void(0)" class="nav-item active" id="btn-dash" onclick="showView('dash')"><img src="ab001_home.svg"><span>Start</span></a>
+        <a href="javascript:void(0)" class="nav-item" id="btn-services" onclick="showView('services')"><img src="ac001_services.svg"><span>Usługi</span></a>
+        <a href="javascript:void(0)" class="nav-item" id="btn-qr-menu" onclick="showView('qr-menu')"><img src="ai001_scanner_qr.svg"><span>Kod QR</span></a>
+        <a href="javascript:void(0)" class="nav-item" id="btn-more" onclick="showView('more')"><img src="ab010_more.svg"><span>Więcej</span></a>
     </div>
 
     <script>
-        let userData = JSON.parse(localStorage.getItem('mObyMaster')) || null;
-        let currentTheme = localStorage.getItem('mObyTheme') || 'dark';
-        document.documentElement.setAttribute('data-theme', currentTheme);
+        let userData = JSON.parse(localStorage.getItem('mObyRealData')) || null;
+        let theme = localStorage.getItem('mObyTheme') || 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
 
         function toggleTheme() {
-            currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', currentTheme);
-            localStorage.setItem('mObyTheme', currentTheme);
+            theme = theme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('mObyTheme', theme);
         }
 
         function showView(v) {
             document.querySelectorAll('.view').forEach(x => x.classList.remove('active'));
-            document.querySelectorAll('.nav-link').forEach(x => x.classList.remove('active'));
-            document.getElementById('view-' + v).classList.add('active');
-            const nav = document.getElementById('nav-' + v);
-            if(nav) nav.classList.add('active');
+            document.querySelectorAll('.nav-item').forEach(x => x.classList.remove('active'));
+            const viewEl = document.getElementById('view-' + v);
+            if(viewEl) viewEl.classList.add('active');
+            
+            let navId = 'btn-' + v;
+            if(v === 'doc') navId = 'btn-dash';
+            if(v === 'qr-real') navId = 'btn-qr-menu';
+            const navEl = document.getElementById(navId);
+            if(navEl) navEl.classList.add('active');
             window.scrollTo(0,0);
         }
 
-        function genSerial() {
-            const l = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            let r = ""; for(let i=0;i<3;i++) r += l[Math.floor(Math.random()*26)];
-            r += " "; for(let i=0;i<6;i++) r += Math.floor(Math.random()*10);
-            return r;
-        }
-
         function applyData() {
-            if(!userData) {
-                showView('setup');
-                return;
-            }
+            if(!userData) return;
+            // Całkowite ukrycie formularza
+            document.getElementById('view-setup').style.display = 'none';
+            
             document.getElementById('doc-n1').innerText = userData.n1.toUpperCase();
             document.getElementById('doc-n3').innerText = userData.n3.toUpperCase();
             document.getElementById('doc-db').innerText = userData.db;
             document.getElementById('doc-photo').src = userData.photo;
             document.getElementById('doc-pesel').innerText = (function(b){
-                const p = b.split('.'); if(p.length<3) return "08210803827";
-                return p[2].slice(-2)+p[1]+p[0]+Math.floor(10000+Math.random()*90000);
+                const p = b.split('.'); return (p[2]||"00").slice(-2)+ (p[1]||"01") + (p[0]||"01") + Math.floor(10000+Math.random()*90000);
             })(userData.db);
             
-            document.getElementById('doc-serial').innerText = genSerial();
+            document.getElementById('doc-serial').innerText = (function(){
+                const l = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                let s = ""; for(let i=0;i<3;i++) s+=l[Math.floor(Math.random()*26)];
+                s += " "; for(let i=0;i<6;i++) s+=Math.floor(Math.random()*10);
+                return s;
+            })();
+
             document.getElementById('d-fn').innerText = (userData.fn || "MAREK").toUpperCase();
             document.getElementById('d-mn').innerText = (userData.mn || "KATARZYNA").toUpperCase();
             document.getElementById('d-pb').innerText = (userData.pb || "WARSZAWA").toUpperCase();
             document.getElementById('d-adr').innerText = (userData.adr || "UL. WIEJSKA 1, 00-001 WARSZAWA").toUpperCase();
-            
+
             showView('dash');
         }
 
@@ -328,7 +325,7 @@
                 adr: document.getElementById('in-adr').value,
                 photo: document.getElementById('setup-preview').src
             };
-            localStorage.setItem('mObyMaster', JSON.stringify(userData));
+            localStorage.setItem('mObyRealData', JSON.stringify(userData));
             applyData();
         });
 
@@ -343,6 +340,14 @@
                 r.readAsDataURL(f);
             }
         });
+
+        let qT = 240;
+        setInterval(() => {
+            qT--; if(qT < 0) qT = 240;
+            const m = Math.floor(qT/60), s = qT%60;
+            const timer = document.getElementById('qr-timer');
+            if(timer) timer.innerText = `${m} min ${s.toString().padStart(2,'0')} sek.`;
+        }, 1000);
 
         function updateClock() {
             const n = new Date();
