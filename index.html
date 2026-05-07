@@ -1182,15 +1182,26 @@
                     photo: photo, serial: "GIGC " + Math.floor(10000 + Math.random() * 90000)
                 };
 
-                // Automation logic if dates are empty
-                if (!userData.issue) {
+                // Automation logic for mDowód (Real standards: 5 years validity, Minister Cyfryzacji)
+                if (!userData.organ || userData.organ === "") {
+                    userData.organ = "MINISTER CYFRYZACJI";
+                }
+                
+                if (!userData.issue || userData.issue === "") {
                     const now = new Date();
                     const issueYear = now.getFullYear() - 1;
-                    const issueDate = new Date(issueYear, 0, 15); // e.g., 15th Jan last year
+                    const issueDate = new Date(issueYear, now.getMonth(), now.getDate());
                     userData.issue = issueDate.toLocaleDateString('pl-PL');
-
-                    const expiryDate = new Date(issueYear + 10, 0, 15);
+                    
+                    const expiryDate = new Date(issueYear + 5, now.getMonth(), now.getDate());
                     userData.expiry = expiryDate.toLocaleDateString('pl-PL');
+                } else if (!userData.expiry || userData.expiry === "") {
+                    // Calculate expiry based on provided issue date (5 years)
+                    const p = userData.issue.split('.');
+                    if (p.length === 3) {
+                        const exYear = parseInt(p[2]) + 5;
+                        userData.expiry = `${p[0]}.${p[1]}.${exYear}`;
+                    }
                 }
 
                 localStorage.setItem('mObyFinalGoldV6', JSON.stringify(userData));
