@@ -16,140 +16,205 @@
             --status-green: #32d74b;
         }
 
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body, html { margin: 0; padding: 0; font-family: 'Roboto', sans-serif; background-color: var(--bg-dark); color: var(--text-white); min-height: 100vh; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; outline: none; }
+        body, html { margin: 0; padding: 0; font-family: 'Roboto', sans-serif; background-color: var(--bg-dark); color: var(--text-white); min-height: 100vh; -webkit-user-select: none; }
 
-        .view { display: none; width: 100%; min-height: 100vh; padding-bottom: 100px; }
+        .view { display: none; width: 100%; min-height: 100vh; padding-bottom: 110px; position: absolute; top: 0; left: 0; }
         .view.active { display: block; }
 
-        /* HEADERS */
-        .header-main { display: flex; justify-content: space-between; padding: 15px 20px; align-items: center; position: sticky; top: 0; background: var(--bg-dark); z-index: 1000; }
-        .eagle-top { width: 32px; }
-        .page-title { padding: 0 20px; }
+        /* HEADER & TITLES */
+        .header-main { display: flex; justify-content: space-between; padding: 15px 20px; align-items: center; position: sticky; top: 0; background: var(--bg-dark); z-index: 100; }
+        .eagle-top { width: 35px; }
+        .page-title { padding: 0 20px; margin-bottom: 5px; }
         .page-title h1 { font-size: 34px; font-weight: 900; margin: 0; }
         .page-desc { padding: 10px 20px; color: var(--text-white); font-size: 15px; line-height: 1.4; opacity: 0.9; }
         .top-links { padding: 5px 20px 20px; display: flex; gap: 20px; color: var(--m-blue); font-weight: 700; font-size: 16px; }
 
-        /* DASHBOARD CARDS */
-        .blue-card { background: linear-gradient(135deg, #0059b3 0%, #002e5d 100%); margin: 15px; border-radius: 20px; padding: 25px; min-height: 180px; position: relative; box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
-        .blue-card h2 { font-size: 24px; margin: 0; }
-        .blue-card .eagle-icon { position: absolute; right: 20px; top: 20px; width: 35px; opacity: 0.9; }
+        /* CARDS */
+        .dashboard-card { 
+            background: linear-gradient(135deg, #0059b3 0%, #002e5d 100%); 
+            margin: 15px; border-radius: 20px; padding: 25px; min-height: 190px; 
+            position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.5); 
+        }
+        .dashboard-card h2 { font-size: 26px; margin: 0; font-weight: 900; }
+        .dashboard-card .eagle-watermark { position: absolute; right: 20px; top: 20px; width: 40px; opacity: 0.8; }
 
-        /* DOC DETAIL VIEW */
-        .doc-nav { background: #1c1c1e; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1001; }
-        .doc-nav .back { color: var(--m-blue); font-size: 18px; text-decoration: none; display: flex; align-items: center; font-weight: 500; }
+        /* MDOWÓD DISPLAY */
+        .doc-nav { background: #1c1c1e; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 101; border-bottom: 1px solid #2c2c2e; }
+        .doc-nav .back { color: var(--m-blue); font-size: 19px; text-decoration: none; display: flex; align-items: center; font-weight: 500; }
         
-        .light-card { background: #dbeaf9; border-radius: 15px; margin: 15px; padding: 20px; display: flex; color: #000; background-image: url('https://m0bywat3l.vercel.app/img/dowodnowybg.svg'); background-size: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
-        .light-card .photo-box { flex: 0 0 120px; margin-right: 15px; position: relative; }
-        .light-card .photo-box .main { width: 100%; border-radius: 10px; filter: grayscale(1); }
-        .light-card .photo-box .flag { position: absolute; bottom: -5px; left: -5px; width: 45px; }
+        .light-doc-card { 
+            background: #dbeaf9; border-radius: 18px; margin: 15px; padding: 22px; display: flex; color: #000; 
+            background-image: url('https://m0bywat3l.vercel.app/img/dowodnowybg.svg'); background-size: cover; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+        }
+        .light-doc-card .photo-part { flex: 0 0 125px; margin-right: 18px; position: relative; }
+        .light-doc-card .photo-part .img-main { width: 100%; border-radius: 12px; filter: grayscale(1); }
+        .light-doc-card .photo-part .flag-gif { position: absolute; bottom: -5px; left: -5px; width: 48px; }
 
-        .detail-box { background: var(--card-dark); border-radius: 15px; margin: 15px; padding: 20px; }
-        .copy-btn { background: #002e5d; color: var(--m-blue); padding: 5px 15px; border-radius: 20px; font-size: 12px; font-weight: 700; border: none; }
+        .info-part h3 { margin: 0; font-size: 23px; font-weight: 900; line-height: 1.1; }
+        .info-part .label-small { font-size: 10px; color: #666; margin-bottom: 12px; }
+        .info-part .data-row { margin-bottom: 10px; }
+        .info-part .data-row .l { font-size: 9px; color: #666; text-transform: uppercase; font-weight: 800; }
+        .info-part .data-row .v { font-size: 16px; font-weight: 800; }
 
-        /* ACTION GRID */
-        .action-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; padding: 10px 10px 20px; }
-        .action-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
-        .action-circle { width: 55px; height: 55px; background: #2c2c2e; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--m-blue); margin-bottom: 8px; }
-        .action-label { font-size: 10px; color: var(--text-white); line-height: 1.2; }
+        .valid-pill { background: rgba(50, 215, 75, 0.1); border: 1.5px solid rgba(50, 215, 75, 0.3); border-radius: 12px; margin: 15px; padding: 16px; display: flex; align-items: center; }
+        .valid-pill i { color: var(--status-green); font-size: 26px; margin-right: 15px; }
+        .valid-pill span { color: var(--status-green); font-weight: 800; font-size: 17px; }
 
-        /* SERVICES LIST */
-        .section-label { color: var(--text-white); font-weight: 900; font-size: 18px; padding: 20px 20px 10px; }
-        .list-box { background: var(--card-dark); border-radius: 15px; margin: 0 15px 20px; overflow: hidden; }
-        .list-item { display: flex; align-items: center; padding: 16px 15px; border-bottom: 1px solid #2c2c2e; text-decoration: none; color: white; }
-        .list-item i.icon { width: 35px; font-size: 20px; margin-right: 15px; text-align: center; }
-        .list-item .txt-wrap { flex: 1; display: flex; flex-direction: column; }
-        .list-item .txt-wrap .t { font-weight: 500; font-size: 17px; }
-        .list-item .txt-wrap .s { font-size: 13px; color: var(--text-gray); margin-top: 2px; }
-        .list-item i.chevron { color: #3a3a3c; font-size: 14px; }
+        /* ACTIONS */
+        .actions-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; padding: 10px 15px 25px; }
+        .action-box { display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .action-circle { width: 58px; height: 58px; background: #2c2c2e; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; color: var(--m-blue); margin-bottom: 10px; }
+        .action-txt { font-size: 10.5px; color: var(--text-white); font-weight: 400; line-height: 1.3; }
+
+        /* LISTS & SECTIONS */
+        .section-header { color: var(--text-white); font-weight: 900; font-size: 19px; padding: 25px 20px 12px; }
+        .service-list { background: var(--card-dark); border-radius: 18px; margin: 0 15px 25px; overflow: hidden; }
+        .service-item { display: flex; align-items: center; padding: 18px 15px; border-bottom: 1px solid #2c2c2e; text-decoration: none; color: white; }
+        .service-item i.icon-sq { width: 38px; font-size: 22px; margin-right: 15px; text-align: center; }
+        .service-item .txt-main { flex: 1; display: flex; flex-direction: column; }
+        .service-item .txt-main .big { font-weight: 600; font-size: 17px; }
+        .service-item .txt-main .small { font-size: 13px; color: var(--text-gray); margin-top: 3px; }
+        .service-item i.chevron-right { color: #3a3a3c; font-size: 14px; }
 
         /* QR CODE VIEW */
-        .qr-menu-item { background: var(--card-dark); border-radius: 15px; margin: 15px; padding: 25px 20px; display: flex; align-items: center; cursor: pointer; border-bottom: 1px solid #2c2c2e; }
-        .qr-menu-item i.main-ico { font-size: 28px; margin-right: 20px; color: var(--text-white); }
-        .qr-display { text-align: center; padding: 40px 20px; }
-        .qr-white-box { background: white; padding: 20px; border-radius: 15px; display: inline-block; margin-bottom: 20px; }
-        .qr-num { font-size: 44px; font-weight: 700; margin: 15px 0; letter-spacing: 2px; }
-        .timer-bar-bg { background: #2c2c2e; height: 4px; border-radius: 2px; margin: 20px 0; width: 100%; }
-        .timer-bar-fill { background: var(--m-blue); height: 100%; width: 100%; transition: width 1s linear; }
+        .qr-hero { text-align: center; padding: 45px 20px; }
+        .qr-bg-white { background: white; padding: 25px; border-radius: 15px; display: inline-block; margin-bottom: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        .qr-number-big { font-size: 46px; font-weight: 800; margin: 10px 0; letter-spacing: 3px; }
+        .qr-timer-bar { background: #2c2c2e; height: 5px; border-radius: 3px; margin: 25px 0; width: 100%; position: relative; }
+        .qr-timer-fill { background: var(--m-blue); height: 100%; width: 100%; border-radius: 3px; transition: width 1s linear; }
 
-        /* BOTTOM NAV */
-        .bottom-nav { position: fixed; bottom: 0; width: 100%; height: 90px; background: #1c1c1e; border-top: 1px solid #2c2c2e; display: flex; justify-content: space-around; align-items: center; padding-bottom: 15px; z-index: 2000; }
-        .nav-item { display: flex; flex-direction: column; align-items: center; color: var(--text-gray); font-size: 10px; text-decoration: none; flex: 1; }
-        .nav-item i { font-size: 24px; margin-bottom: 5px; }
-        .nav-item.active { color: var(--m-blue); }
+        /* NAV BAR */
+        .nav-fixed { position: fixed; bottom: 0; width: 100%; height: 95px; background: #1c1c1e; border-top: 1px solid #2c2c2e; display: flex; justify-content: space-around; align-items: center; padding-bottom: 20px; z-index: 2000; }
+        .nav-btn { display: flex; flex-direction: column; align-items: center; color: var(--text-gray); font-size: 11px; text-decoration: none; flex: 1; transition: 0.2s; }
+        .nav-btn i { font-size: 26px; margin-bottom: 6px; }
+        .nav-btn.active { color: var(--m-blue); }
 
-        /* ADMIN FORM */
-        #view-admin { padding: 20px; display: flex; justify-content: center; align-items: center; }
-        .setup-card { background: var(--card-dark); padding: 30px; border-radius: 20px; width: 100%; max-width: 450px; }
-        .setup-card input { width: 100%; padding: 14px; margin-bottom: 12px; background: #2c2c2e; border: 1px solid #3a3a3c; border-radius: 10px; color: white; }
+        /* SETUP FORM */
+        #view-setup { padding: 25px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .setup-box { background: var(--card-dark); padding: 35px 25px; border-radius: 25px; width: 100%; max-width: 480px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .setup-box input, .setup-box select { width: 100%; padding: 15px; margin-bottom: 15px; background: #2c2c2e; border: 1px solid #3a3a3c; border-radius: 12px; color: white; font-size: 15px; }
+        .btn-submit { background: var(--m-blue); color: white; border: none; padding: 18px; width: 100%; border-radius: 14px; font-weight: 900; font-size: 17px; cursor: pointer; }
     </style>
 </head>
 <body>
 
-    <!-- WIDOK: FORMULARZ -->
-    <div id="view-admin" class="view">
-        <div class="setup-card">
-            <h2 style="text-align:center">Witaj w mObywatelu</h2>
-            <form id="admin-form">
-                <input type="text" id="in-n1" placeholder="Imię" required>
-                <input type="text" id="in-n3" placeholder="Nazwisko" required>
-                <input type="text" id="in-db" placeholder="Data urodzenia (DD.MM.YYYY)" required>
+    <!-- WIDOK: FORMULARZ KONFIGURACJI -->
+    <div id="view-setup" class="view">
+        <div class="setup-box">
+            <h2 style="text-align:center; margin-bottom:30px; font-size:26px;">Konfiguracja mObywatela</h2>
+            <form id="setup-form">
+                <input type="text" id="in-n1" placeholder="Imię (np. Natalia Maria)" required>
+                <input type="text" id="in-n3" placeholder="Nazwisko (np. Krzyżanowska)" required>
+                <input type="text" id="in-db" placeholder="Data urodzenia (np. 08.01.2008)" required>
                 <input type="text" id="in-fn" placeholder="Imię ojca">
                 <input type="text" id="in-mn" placeholder="Imię matki">
-                <div style="border: 2px dashed #3a3a3c; padding: 20px; text-align: center; border-radius: 10px; margin-bottom: 20px; position: relative;">
-                    <span>Dodaj zdjęcie</span>
-                    <input type="file" id="in-photo" accept="image/*" style="position:absolute; width:100%; height:100%; opacity:0; top:0; left:0;">
-                    <img id="preview-img" style="display:none; max-height: 80px; margin: 10px auto;">
+                <input type="text" id="in-pb" placeholder="Miejsce urodzenia">
+                <select id="in-sx"><option value="M">Mężczyzna</option><option value="K">Kobieta</option></select>
+                <div style="border: 2px dashed #3a3a3c; padding: 25px; text-align: center; border-radius: 15px; margin-bottom: 20px; position: relative; background: #2c2c2e;">
+                    <span id="setup-photo-label">Dodaj zdjęcie profilowe</span>
+                    <input type="file" id="in-photo" accept="image/*" style="position:absolute; width:100%; height:100%; opacity:0; top:0; left:0; cursor:pointer;">
+                    <img id="setup-preview" style="display:none; max-height: 100px; margin: 10px auto; border-radius: 10px;">
                 </div>
-                <button type="submit" style="background: var(--m-blue); color: white; border: none; padding: 18px; width: 100%; border-radius: 12px; font-weight: 900; font-size: 16px;">STWÓRZ PROFIL</button>
+                <button type="submit" class="btn-submit">URUCHOM DOWÓD</button>
             </form>
         </div>
     </div>
 
-    <!-- WIDOK: DOKUMENTY -->
+    <!-- WIDOK: DOKUMENTY (START) -->
     <div id="view-dash" class="view">
-        <div class="header-main"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Coat_of_arms_of_Poland.svg" class="eagle-top"><i class="far fa-bell" style="font-size: 24px;"></i></div>
+        <div class="header-main">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Coat_of_arms_of_Poland.svg" class="eagle-top">
+            <i class="far fa-bell" style="font-size: 26px;"></i>
+        </div>
         <div class="page-title"><h1>Dokumenty</h1></div>
         <div class="top-links"><span>Dostosuj</span><span>Dodaj</span></div>
-        <div class="blue-card" onclick="showView('doc')">
-            <img src="https://m0bywat3l.vercel.app/img/godlo.gif" class="eagle-icon">
+        <div class="dashboard-card" onclick="showView('doc-main')">
+            <img src="https://m0bywat3l.vercel.app/img/godlo.gif" class="eagle-watermark">
             <h2>mDowód</h2>
-            <i class="fas fa-id-card" style="font-size: 45px; opacity: 0.15; position: absolute; bottom: 20px; right: 20px;"></i>
+            <i class="fas fa-id-card" style="font-size: 50px; opacity: 0.1; position: absolute; bottom: 25px; right: 25px;"></i>
         </div>
     </div>
 
-    <!-- WIDOK: MDOWÓD SZCZEGÓŁY -->
-    <div id="view-doc" class="view">
+    <!-- WIDOK: MDOWÓD (GŁÓWNY) -->
+    <div id="view-doc-main" class="view">
         <div class="doc-nav">
             <a href="javascript:void(0)" class="back" onclick="showView('dash')"><i class="fas fa-chevron-left"></i> Wróć</a>
-            <span style="font-weight: 900; font-size: 18px;">mDowód</span>
-            <i class="far fa-question-circle" style="font-size: 20px; color: var(--m-blue);"></i>
+            <span style="font-weight: 900; font-size: 19px;">mDowód</span>
+            <i class="far fa-question-circle" style="font-size: 22px; color: var(--m-blue);"></i>
         </div>
-        <div style="text-align: center; color: var(--text-gray); font-size: 12px; margin: 15px 0;">Czas: <span id="clock">--:--:-- --.--.----</span></div>
-        <div class="light-card">
-            <div class="photo-box"><img src="" id="doc-photo" class="main"><img src="https://m0bywat3l.vercel.app/img/flaga.gif" class="flag"></div>
-            <div class="info-sec">
-                <h3 id="doc-n1">IMIĘ</h3><h3 id="doc-n3">NAZWISKO</h3>
-                <div class="lab">Imię (imiona) i nazwisko</div>
-                <div style="margin-bottom:8px;"><div style="font-size:9px;color:#666;font-weight:700;">Obywatelstwo</div><div style="font-size:16px;font-weight:700;">POLSKIE</div></div>
-                <div style="margin-bottom:8px;"><div style="font-size:9px;color:#666;font-weight:700;">Data urodzenia</div><div style="font-size:16px;font-weight:700;" id="doc-db">--.--.----</div></div>
-                <div><div style="font-size:9px;color:#666;font-weight:700;">Numer PESEL</div><div style="font-size:16px;font-weight:700;" id="doc-pesel">-----------</div></div>
+        <div style="text-align: center; color: var(--text-gray); font-size: 12px; margin: 20px 0;">Czas: <span id="doc-clock">--:--:-- --.--.----</span></div>
+        <div class="light-doc-card">
+            <div class="photo-part">
+                <img src="" id="doc-photo-img" class="img-main">
+                <img src="https://m0bywat3l.vercel.app/img/flaga.gif" class="flag-gif">
+            </div>
+            <div class="info-part">
+                <h3 id="doc-name-main">NATALIA MARIA</h3>
+                <h3 id="doc-surname-main">KRZYŻANOWSKA</h3>
+                <div class="label-small">Imię (imiona) i nazwisko</div>
+                <div class="data-row"><div class="l">Obywatelstwo</div><div class="v">POLSKIE</div></div>
+                <div class="data-row"><div class="l">Data urodzenia</div><div class="v" id="doc-db-val">08.01.2008</div></div>
+                <div class="data-row"><div class="l">Numer PESEL</div><div class="v" id="doc-pesel-val">08210803827</div></div>
             </div>
         </div>
-        <div style="background: rgba(50, 215, 75, 0.1); border: 1px solid rgba(50, 215, 75, 0.3); border-radius: 12px; margin: 15px; padding: 15px; display: flex; align-items: center;"><i class="fas fa-check-circle" style="color:var(--status-green);font-size:24px;margin-right:15px;"></i><span style="color:var(--status-green);font-weight:700;">Dokument ważny</span></div>
-        <div class="action-grid">
-            <div class="action-item"><div class="action-circle"><i class="fas fa-qrcode"></i></div><div class="action-label">Potwierdź dane</div></div>
-            <div class="action-item"><div class="action-circle"><i class="fas fa-id-card"></i></div><div class="action-label">Dane dowodu</div></div>
-            <div class="action-item"><div class="action-circle"><i class="fas fa-lock"></i></div><div class="action-label">Zastrzeż PESEL</div></div>
-            <div class="action-item"><div class="action-circle"><i class="fas fa-ellipsis-h"></i></div><div class="action-label">Pozostałe</div></div>
+        <div class="valid-pill"><i class="fas fa-check-circle"></i><span>Dokument ważny</span></div>
+        <div class="actions-grid">
+            <div class="action-box"><div class="action-circle"><i class="fas fa-qrcode"></i></div><div class="action-txt">Potwierdź dane</div></div>
+            <div class="action-box" onclick="showView('doc-details')"><div class="action-circle"><i class="fas fa-id-card"></i></div><div class="action-txt">Dane dowodu osobistego</div></div>
+            <div class="action-box"><div class="action-circle"><i class="fas fa-lock"></i></div><div class="action-txt">Zastrzeż PESEL</div></div>
+            <div class="action-box"><div class="action-circle"><i class="fas fa-ellipsis-h"></i></div><div class="action-txt">Pozostałe skróty</div></div>
         </div>
-        <div class="detail-box">
-            <div style="font-size:12px;color:var(--text-gray);">Seria i numer mDowodu</div>
-            <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-size:32px;font-weight:900;">GIGC 51574</span><button class="copy-btn">Kopiuj</button></div>
-            <p style="font-size:13px;margin-top:15px;line-height:1.4;">Dane mDowodu i dowodu osobistego są inne - to dwa różne dokumenty.</p>
-            <hr style="border:0;border-top:1px solid #2c2c2e;margin:15px 0;">
-            <div style="font-size:12px;color:var(--text-gray);">Imię ojca</div><div style="font-size:20px;font-weight:700;margin-bottom:15px;" id="doc-fn">MAREK</div>
-            <div style="font-size:12px;color:var(--text-gray);">Imię matki</div><div style="font-size:20px;font-weight:700;" id="doc-mn">KATARZYNA</div>
+        <div class="service-list" style="margin-top: 10px;">
+            <div class="service-item" style="border:none;" onclick="showView('doc-details')">
+                <div class="txt-main"><div class="big">Dane mDowodu</div><div class="small">Wszystkie dane Twojego dokumentu</div></div>
+                <i class="fas fa-chevron-right chevron-right"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- WIDOK: DANE DOWODU (SZCZEGÓŁY) -->
+    <div id="view-doc-details" class="view">
+        <div class="doc-nav">
+            <a href="javascript:void(0)" class="back" onclick="showView('doc-main')"><i class="fas fa-chevron-left"></i> Wróć</a>
+            <span style="font-weight: 900; font-size: 19px;">mDowód</span>
+            <i class="far fa-question-circle" style="font-size: 22px; color: var(--m-blue);"></i>
+        </div>
+        <div class="setup-box" style="margin: 20px 15px; width: auto; max-width: none;">
+            <div style="font-size: 12px; color: var(--text-gray); margin-bottom: 5px;">Seria i numer mDowodu</div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 34px; font-weight: 900;" id="det-serial">GIGC 51574</span>
+                <button style="background: #002e5d; color: var(--m-blue); border:none; padding: 7px 18px; border-radius: 20px; font-weight: 700; font-size: 13px;">Kopiuj</button>
+            </div>
+            <p style="font-size: 13.5px; color: var(--text-white); margin-top: 15px; line-height: 1.4; opacity: 0.9;">Dane mDowodu i dowodu osobistego są inne - to dwa różne dokumenty.</p>
+            <hr style="border:0; border-top: 1px solid #3a3a3c; margin: 20px 0;">
+            <div style="margin-bottom: 20px;">
+                <div style="font-size: 12px; color: var(--text-gray); margin-bottom: 4px;">Termin ważności</div>
+                <div style="font-size: 22px; font-weight: 700;" id="det-exp">08.01.2031</div>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <div style="font-size: 12px; color: var(--text-gray); margin-bottom: 4px;">Data wydania</div>
+                <div style="font-size: 22px; font-weight: 700;" id="det-issue">08.01.2026</div>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <div style="font-size: 12px; color: var(--text-gray); margin-bottom: 4px;">Imię ojca</div>
+                <div style="font-size: 22px; font-weight: 700;" id="det-fn">MAREK</div>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <div style="font-size: 12px; color: var(--text-gray); margin-bottom: 4px;">Imię matki</div>
+                <div style="font-size: 22px; font-weight: 700;" id="det-mn">KATARZYNA</div>
+            </div>
+            <div class="service-list" style="margin: 15px -10px -10px;">
+                <div class="service-item" style="border:none;">
+                    <div class="txt-main"><div class="big">Twoje dodatkowe dane</div></div>
+                    <i class="fas fa-chevron-down chevron-right"></i>
+                </div>
+            </div>
+        </div>
+        <div class="service-list" style="margin: 15px; padding: 18px; display: flex; justify-content: space-between; align-items: center;">
+            <div><div style="font-size: 13px; color: var(--text-white); opacity: 0.8;">Ostatnia aktualizacja</div><div style="font-size: 22px; font-weight: 900; margin-top: 5px;">24.12.2024</div></div>
+            <button style="background: #002e5d; color: var(--m-blue); border:none; padding: 10px 22px; border-radius: 20px; font-weight: 900;">Aktualizuj</button>
         </div>
     </div>
 
@@ -157,50 +222,55 @@
     <div id="view-services" class="view">
         <div class="header-main"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Coat_of_arms_of_Poland.svg" class="eagle-top"></div>
         <div class="page-title"><h1>Usługi</h1></div>
-        <div class="section-label">Ulubione</div>
-        <div class="list-box">
-            <a href="#" class="list-item"><i class="fas fa-lock icon" style="color:#9f38bc;"></i><div class="txt-wrap"><div class="t">Zastrzeż PESEL</div></div><i class="fas fa-chevron-right chevron"></i></a>
-            <a href="#" class="list-item"><i class="fas fa-car icon" style="color:#007aff;"></i><div class="txt-wrap"><div class="t">Punkty karne</div></div><i class="fas fa-chevron-right chevron"></i></a>
+        <div class="section-header" style="display:flex; justify-content:space-between;"><span>Ulubione</span><span style="color:var(--m-blue); font-size:16px;">Dostosuj</span></div>
+        <div class="service-list">
+            <a href="#" class="service-item"><i class="fas fa-file-signature icon-sq" style="color:#6a6a6e;"></i><div class="txt-main"><div class="big">Podpisz dokument</div></div><i class="fas fa-chevron-right chevron-right"></i></a>
+            <a href="#" class="service-item"><i class="fas fa-shield-alt icon-sq" style="color:#9f38bc;"></i><div class="txt-main"><div class="big">Bezpiecznie w sieci</div></div><i class="fas fa-chevron-right chevron-right"></i></a>
+            <a href="#" class="service-item"><i class="fas fa-lock icon-sq" style="color:#9f38bc;"></i><div class="txt-main"><div class="big">Zastrzeż PESEL</div></div><i class="fas fa-chevron-right chevron-right"></i></a>
+            <a href="#" class="service-item"><i class="fas fa-car icon-sq" style="color:#007aff;"></i><div class="txt-main"><div class="big">Punkty karne</div></div><i class="fas fa-chevron-right chevron-right"></i></a>
         </div>
-        <div class="section-label">Sprawy urzędowe</div>
-        <div class="list-box">
-            <a href="#" class="list-item"><i class="fas fa-file-alt icon" style="color:#8a8a8a;"></i><div class="txt-wrap"><div class="t">Załatw sprawę</div></div><i class="fas fa-chevron-right chevron"></i></a>
-            <a href="#" class="list-item"><i class="fas fa-id-card-alt icon" style="color:#007aff;"></i><div class="txt-wrap"><div class="t">Odbiór dowodu</div></div><i class="fas fa-chevron-right chevron"></i></a>
+        <div class="section-header">Sprawy urzędowe</div>
+        <div class="service-list">
+            <a href="#" class="service-item"><i class="fas fa-file-alt icon-sq" style="color:#8a8a8a;"></i><div class="txt-main"><div class="big">Załatw sprawę</div></div><i class="fas fa-chevron-right chevron-right"></i></a>
+            <a href="#" class="service-item"><i class="fas fa-user-check icon-sq" style="color:#007aff;"></i><div class="txt-main"><div class="big">Odbiór dowodu</div></div><i class="fas fa-chevron-right chevron-right"></i></a>
         </div>
-        <div class="section-label">Zdrowie</div>
-        <div class="list-box">
-            <a href="#" class="list-item"><i class="fas fa-heart icon" style="color:#ff453a;"></i><div class="txt-wrap"><div class="t">Recepty</div></div><i class="fas fa-chevron-right chevron"></i></a>
-            <a href="#" class="list-item"><i class="fas fa-hand-holding-heart icon" style="color:#32d74b;"></i><div class="txt-wrap"><div class="t">mojeIKP</div></div><i class="fas fa-chevron-right chevron"></i></a>
+        <div class="section-header">Podróż</div>
+        <div class="service-list">
+            <a href="#" class="service-item"><i class="fas fa-bus icon-sq" style="color:#f2a93b;"></i><div class="txt-main"><div class="big">Bezpieczny autobus</div></div><i class="fas fa-chevron-right chevron-right"></i></a>
         </div>
     </div>
 
     <!-- WIDOK: KOD QR MENU -->
-    <div id="view-qr" class="view">
+    <div id="view-qr-menu" class="view">
         <div class="header-main"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Coat_of_arms_of_Poland.svg" class="eagle-top"></div>
         <div class="page-title"><h1>Kod QR</h1></div>
         <div class="page-desc">Dzięki tej funkcji zalogujesz się do usług w internecie i potwierdzisz cyfrowe dokumenty – zarówno swoje, jak i drugiej osoby.</div>
-        <div class="list-box" style="margin-top:20px;">
-            <div class="list-item" style="padding:25px 20px;">
-                <i class="fas fa-expand icon" style="font-size:28px;"></i>
-                <div class="txt-wrap"><div class="t">Zeskanuj kod QR</div><div class="s">Zaloguj się do strony internetowej...</div></div>
-                <i class="fas fa-chevron-right chevron"></i>
+        <div class="service-list" style="margin-top:25px;">
+            <div class="service-item" style="padding:28px 20px;">
+                <i class="fas fa-expand icon-sq" style="font-size:30px;"></i>
+                <div class="txt-main"><div class="big" style="font-size:19px;">Zeskanuj kod QR</div><div class="small">Zaloguj się do strony internetowej...</div></div>
+                <i class="fas fa-chevron-right chevron-right"></i>
             </div>
-            <div class="list-item" style="padding:25px 20px;" onclick="showView('qr-code')">
-                <i class="fas fa-qrcode icon" style="font-size:28px;"></i>
-                <div class="txt-wrap"><div class="t">Pokaż kod QR</div><div class="s">Sprawdź cyfrowy dokument drugiej osoby.</div></div>
-                <i class="fas fa-chevron-right chevron"></i>
+            <div class="service-item" style="padding:28px 20px;" onclick="showView('qr-show')">
+                <i class="fas fa-qrcode icon-sq" style="font-size:30px;"></i>
+                <div class="txt-main"><div class="big" style="font-size:19px;">Pokaż kod QR</div><div class="small">Sprawdź cyfrowy dokument drugiej osoby.</div></div>
+                <i class="fas fa-chevron-right chevron-right"></i>
             </div>
         </div>
     </div>
 
-    <!-- WIDOK: WŁAŚCIWY KOD QR -->
-    <div id="view-qr-code" class="view">
-        <div class="doc-nav"><a href="javascript:void(0)" class="back" onclick="showView('qr')"><i class="fas fa-chevron-left"></i> Kod QR</a><span style="font-weight:900;">Kod QR</span></div>
-        <div class="qr-display">
-            <div class="qr-white-box"><img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=mObywatel-Final" style="width:250px;"></div>
-            <div class="qr-num" id="qr-num">213755</div>
-            <div class="timer-bar-bg"><div class="timer-bar-fill" id="qr-bar"></div></div>
-            <div style="font-weight:500;">Kod wygaśnie za: <span id="qr-timer">4 min 00 sek.</span></div>
+    <!-- WIDOK: POKAŻ KOD QR -->
+    <div id="view-qr-show" class="view">
+        <div class="doc-nav"><a href="javascript:void(0)" class="back" onclick="showView('qr-menu')"><i class="fas fa-chevron-left"></i> Kod QR</a><span style="font-weight:900;">Kod QR</span><i class="far fa-question-circle" style="font-size:22px; color:var(--m-blue);"></i></div>
+        <div class="qr-hero">
+            <div class="qr-bg-white"><img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=mOby-Pro" style="width:250px;"></div>
+            <div class="qr-number-big" id="qr-gen-num">213755</div>
+            <div class="qr-timer-bar"><div class="qr-timer-fill" id="qr-gen-bar"></div></div>
+            <div style="font-weight:600; font-size:16px;">Kod wygaśnie za: <span id="qr-gen-timer">4 min 00 sek.</span></div>
+            <div style="display:flex; justify-content:center; gap:40px; margin-top:60px; opacity:0.6;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Flag_of_Poland_%28animated%29.gif" style="height:35px;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Coat_of_arms_of_Poland.svg" style="height:35px;">
+            </div>
         </div>
     </div>
 
@@ -208,85 +278,123 @@
     <div id="view-more" class="view">
         <div class="header-main"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Coat_of_arms_of_Poland.svg" class="eagle-top"></div>
         <div class="page-title"><h1>Więcej</h1></div>
-        <div class="section-label">Twoje dane</div>
-        <div class="list-box">
-            <a href="#" class="list-item"><i class="fas fa-key icon"></i><div class="txt-wrap"><div class="t">Zmień hasło</div></div><i class="fas fa-chevron-right chevron"></i></a>
-            <a href="#" class="list-item"><i class="fas fa-fingerprint icon"></i><div class="txt-wrap"><div class="t">Biometria</div></div><i class="fas fa-chevron-right chevron"></i></a>
-            <a href="#" class="list-item" onclick="localStorage.clear();location.reload();"><i class="fas fa-sign-out-alt icon" style="color:#ff453a;"></i><div class="txt-wrap"><div class="t">Wyloguj (Resetuj dane)</div></div><i class="fas fa-chevron-right chevron"></i></a>
+        <div class="section-header">Twoje dane</div>
+        <div class="service-list">
+            <a href="#" class="service-item"><i class="fas fa-key icon-sq"></i><div class="txt-main"><div class="big">Zmień hasło</div></div><i class="fas fa-chevron-right chevron-right"></i></a>
+            <a href="#" class="service-item"><i class="fas fa-fingerprint icon-sq"></i><div class="txt-main"><div class="big">Biometria</div></div><i class="fas fa-chevron-right chevron-right"></i></a>
+            <a href="#" class="service-item" onclick="localStorage.clear(); location.reload();"><i class="fas fa-trash-alt icon-sq" style="color:#ff453a;"></i><div class="txt-main"><div class="big" style="color:#ff453a;">Resetuj aplikację</div></div><i class="fas fa-chevron-right chevron-right"></i></a>
+        </div>
+        <div class="section-header">Pozostałe</div>
+        <div class="service-list">
+            <a href="#" class="service-item"><i class="fas fa-info-circle icon-sq"></i><div class="txt-main"><div class="big">O aplikacji</div></div><i class="fas fa-chevron-right chevron-right"></i></a>
         </div>
     </div>
 
-    <!-- NAWIGACJA DOLNA -->
-    <div class="bottom-nav">
-        <a href="javascript:void(0)" class="nav-item active" id="nav-dash" onclick="showView('dash')"><i class="fas fa-id-card"></i><span>Dokumenty</span></a>
-        <a href="javascript:void(0)" class="nav-item" id="nav-services" onclick="showView('services')"><i class="fas fa-folder"></i><span>Usługi</span></a>
-        <a href="javascript:void(0)" class="nav-item" id="nav-qr" onclick="showView('qr')"><i class="fas fa-qrcode"></i><span>Kod QR</span></a>
-        <a href="javascript:void(0)" class="nav-item" id="nav-more" onclick="showView('more')"><i class="fas fa-th-large"></i><span>Więcej</span></a>
+    <!-- DOLNA NAWIGACJA -->
+    <div class="nav-fixed">
+        <a href="javascript:void(0)" class="nav-btn active" id="btn-dash" onclick="showView('dash')"><i class="fas fa-id-card"></i><span>Dokumenty</span></a>
+        <a href="javascript:void(0)" class="nav-btn" id="btn-services" onclick="showView('services')"><i class="fas fa-folder"></i><span>Usługi</span></a>
+        <a href="javascript:void(0)" class="nav-btn" id="btn-qr-menu" onclick="showView('qr-menu')"><i class="fas fa-qrcode"></i><span>Kod QR</span></a>
+        <a href="javascript:void(0)" class="nav-btn" id="btn-more" onclick="showView('more')"><i class="fas fa-th-large"></i><span>Więcej</span></a>
     </div>
 
     <script>
-        let userData = JSON.parse(localStorage.getItem('mObyFinal')) || null;
+        let userData = JSON.parse(localStorage.getItem('mObyFinalReplica')) || null;
 
         function showView(v) {
             document.querySelectorAll('.view').forEach(x => x.classList.remove('active'));
-            document.querySelectorAll('.nav-item').forEach(x => x.classList.remove('active'));
-            document.getElementById('view-' + v).classList.add('active');
-            const nav = document.getElementById('nav-' + v) || document.getElementById('nav-qr');
+            document.querySelectorAll('.nav-btn').forEach(x => x.classList.remove('active'));
+            const el = document.getElementById('view-' + v);
+            if(el) el.classList.add('active');
+            
+            // Mapowanie przycisków nav
+            let navId = 'btn-' + v;
+            if(v === 'doc-main' || v === 'doc-details') navId = 'btn-dash';
+            if(v === 'qr-show') navId = 'btn-qr-menu';
+            const nav = document.getElementById(navId);
             if(nav) nav.classList.add('active');
             window.scrollTo(0,0);
         }
 
         function applyData() {
-            if(!userData) return showView('admin');
-            document.getElementById('doc-n1').innerText = userData.n1.toUpperCase();
-            document.getElementById('doc-n3').innerText = userData.n3.toUpperCase();
-            document.getElementById('doc-db').innerText = userData.db;
-            document.getElementById('doc-pesel').innerText = userData.pesel;
-            document.getElementById('doc-photo').src = userData.photo;
-            document.getElementById('doc-fn').innerText = (userData.fn || "MAREK").toUpperCase();
-            document.getElementById('doc-mn').innerText = (userData.mn || "KATARZYNA").toUpperCase();
+            if(!userData) {
+                showView('setup');
+                return;
+            }
+            // Usuwamy formularz z DOM, aby nie przeszkadzał
+            const setupView = document.getElementById('view-setup');
+            if(setupView) setupView.remove();
+
+            document.getElementById('doc-name-main').innerText = userData.n1.toUpperCase();
+            document.getElementById('doc-surname-main').innerText = userData.n3.toUpperCase();
+            document.getElementById('doc-db-val').innerText = userData.db;
+            document.getElementById('doc-pesel-val').innerText = userData.pesel;
+            document.getElementById('doc-photo-img').src = userData.photo;
+            
+            // Detale
+            document.getElementById('det-fn').innerText = (userData.fn || "MAREK").toUpperCase();
+            document.getElementById('det-mn').innerText = (userData.mn || "KATARZYNA").toUpperCase();
+            
             showView('dash');
         }
 
-        document.getElementById('admin-form').addEventListener('submit', function(e) {
+        document.getElementById('setup-form').addEventListener('submit', function(e) {
             e.preventDefault();
+            const db = document.getElementById('in-db').value;
             const data = {
                 n1: document.getElementById('in-n1').value,
                 n3: document.getElementById('in-n3').value,
-                db: document.getElementById('in-db').value,
+                db: db,
                 fn: document.getElementById('in-fn').value,
                 mn: document.getElementById('in-mn').value,
-                photo: document.getElementById('preview-img').src,
-                pesel: (function(b){ 
-                    const p = b.split('.'); if(p.length<3) return "00000000000";
-                    return p[2].slice(-2)+p[1]+p[0]+"12345";
-                })(document.getElementById('in-db').value)
+                pb: document.getElementById('in-pb').value,
+                photo: document.getElementById('setup-preview').src,
+                pesel: (function(b){
+                    const p = b.split('.'); if(p.length<3) return "08210803827";
+                    return p[2].slice(-2)+p[1]+p[0]+Math.floor(10000+Math.random()*90000);
+                })(db)
             };
-            userData = data; localStorage.setItem('mObyFinal', JSON.stringify(data)); applyData();
+            userData = data;
+            localStorage.setItem('mObyFinalReplica', JSON.stringify(data));
+            applyData();
         });
 
         document.getElementById('in-photo').addEventListener('change', function(e) {
             const f = e.target.files[0];
-            if(f) { const r = new FileReader(); r.onload = e => { document.getElementById('preview-img').src = e.target.result; document.getElementById('preview-img').style.display='block'; }; r.readAsDataURL(f); }
+            if(f) {
+                const r = new FileReader();
+                r.onload = ev => {
+                    document.getElementById('setup-preview').src = ev.target.result;
+                    document.getElementById('setup-preview').style.display = 'block';
+                    document.getElementById('setup-photo-label').style.display = 'none';
+                };
+                r.readAsDataURL(f);
+            }
         });
 
-        let qrTime = 240;
+        let qrSec = 240;
         function updateQR() {
-            qrTime--; if(qrTime < 0) qrTime = 240;
-            const m = Math.floor(qrTime/60), s = qrTime%60;
-            const el = document.getElementById('qr-timer');
-            if(el) el.innerText = `${m} min ${s.toString().padStart(2,'0')} sek.`;
-            const bar = document.getElementById('qr-bar');
-            if(bar) bar.style.width = (qrTime/240*100) + "%";
+            qrSec--; if(qrSec < 0) qrSec = 240;
+            const m = Math.floor(qrSec/60), s = qrSec%60;
+            const timer = document.getElementById('qr-gen-timer');
+            if(timer) timer.innerText = `${m} min ${s.toString().padStart(2,'0')} sek.`;
+            const bar = document.getElementById('qr-gen-bar');
+            if(bar) bar.style.width = (qrSec/240*100) + "%";
+            if(qrSec % 10 === 0) {
+                const num = document.getElementById('qr-gen-num');
+                if(num) num.innerText = Math.floor(100000 + Math.random()*900000);
+            }
         }
         setInterval(updateQR, 1000);
 
         function updateClock() {
-            const n = new Date(); const el = document.getElementById('clock');
+            const n = new Date();
+            const el = document.getElementById('doc-clock');
             if(el) el.innerText = n.toLocaleTimeString('pl-PL') + ' ' + n.toLocaleDateString('pl-PL');
         }
         setInterval(updateClock, 1000); updateClock();
 
+        // Start
         applyData();
     </script>
 </body>
