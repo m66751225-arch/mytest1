@@ -34,7 +34,6 @@
         .head-icons { display: flex; gap: 15px; align-items: center; }
         .head-icons img { width: 24px; }
 
-        /* TITLE BOX FIX */
         .title-box { padding: 10px 20px 0; display: flex; justify-content: space-between; align-items: flex-end; position: relative; }
         .title-box h1 { font-size: 32px; font-weight: 900; margin: 0; line-height: 1; }
         .title-links { display: flex; gap: 15px; color: var(--m-blue); font-weight: 700; font-size: 16px; margin-bottom: 2px; }
@@ -46,9 +45,13 @@
             position: relative; box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
         .dash-card h2 { font-size: 26px; margin: 0; color: white; font-weight: 900; }
-        .dash-card .eagle-water { position: absolute; right: 15px; top: 15px; width: 45px; opacity: 0.8; }
+        .dash-card .eagle-water-box { 
+            position: absolute; right: 15px; top: 15px; width: 45px; height: 45px; 
+            background: rgba(255,255,255,0.2); border-radius: 10px; padding: 5px;
+        }
+        .dash-card .eagle-water-box img { width: 100%; height: 100%; filter: brightness(1.5); }
 
-        /* NAV FIX (GRID CENTER) */
+        /* NAV GRID CENTER */
         .doc-nav { 
             background: var(--card); padding: 15px 20px; 
             display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
@@ -59,26 +62,42 @@
         .doc-nav .help-ico { width: 22px; justify-self: end; }
         .doc-nav span { font-weight: 900; font-size: 18px; text-align: center; }
 
-        /* ID CARD VISUAL */
+        /* ID CARD DETAIL */
         .id-card-visual { 
             background: #dbeaf9; border-radius: 18px; margin: 15px; padding: 22px; display: flex; color: #000; 
             background-image: url('dowodnowybg.svg'); background-size: cover; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative;
         }
         .photo-sec { flex: 0 0 120px; margin-right: 18px; position: relative; }
         .photo-sec .main-pic { width: 100%; border-radius: 12px; filter: grayscale(1); }
         .photo-sec .flag-gif { position: absolute; bottom: -5px; left: -5px; width: 45px; z-index: 2; }
         .photo-sec .eagle-gif { position: absolute; bottom: -12px; left: 35px; width: 35px; z-index: 1; }
 
-        .info-sec h3 { margin: 0; font-size: 22px; font-weight: 900; line-height: 1.1; }
-        .info-sec .lab { font-size: 10px; color: #666; margin-bottom: 12px; font-weight: 700; }
-        .info-sec .row { margin-bottom: 10px; }
-        .info-sec .row .l { font-size: 9px; color: #666; font-weight: 800; text-transform: uppercase; }
-        .info-sec .row .v { font-size: 16px; font-weight: 800; }
+        .info-sec h3 { margin: 0; font-size: 20px; font-weight: 900; line-height: 1; }
+        .info-sec .lab { font-size: 9px; color: #666; margin-bottom: 10px; font-weight: 700; }
+        .info-sec .row { margin-bottom: 8px; }
+        .info-sec .row .l { font-size: 8px; color: #666; font-weight: 800; text-transform: uppercase; }
+        .info-sec .row .v { font-size: 15px; font-weight: 800; }
+
+        .doc-actions { display: flex; justify-content: space-around; margin: 20px 15px; }
+        .doc-btn-circ { width: 50px; height: 50px; border-radius: 50%; background: var(--card); display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); }
+        .doc-btn-circ img { width: 24px; opacity: 0.8; }
 
         .status-pill { background: rgba(50, 215, 75, 0.1); border: 1.5px solid rgba(50, 215, 75, 0.3); border-radius: 12px; margin: 15px; padding: 16px; display: flex; align-items: center; }
         .status-pill img { width: 24px; margin-right: 15px; }
         .status-pill span { color: #32d74b; font-weight: 800; font-size: 17px; }
+
+        /* SCANNER VIEW */
+        .scanner-container { background: #000; height: calc(100vh - 110px); position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; }
+        .scanner-msg { position: absolute; top: 40px; color: white; text-align: center; width: 80%; font-size: 14px; font-weight: 500; }
+        .viewfinder { width: 250px; height: 250px; position: relative; border: 2px solid rgba(255,255,255,0.1); }
+        .viewfinder .corner { position: absolute; width: 40px; height: 40px; border: 4px solid white; }
+        .corner.tl { top:-2px; left:-2px; border-right:0; border-bottom:0; border-top-left-radius: 15px; }
+        .corner.tr { top:-2px; right:-2px; border-left:0; border-bottom:0; border-top-right-radius: 15px; }
+        .corner.bl { bottom:-2px; left:-2px; border-right:0; border-top:0; border-bottom-left-radius: 15px; }
+        .corner.br { bottom:-2px; right:-2px; border-left:0; border-top:0; border-bottom-right-radius: 15px; }
+        .warning-box { position: absolute; top: 100px; background: #fff; color: #000; padding: 15px; border-radius: 15px; display: flex; align-items: center; width: 90%; gap: 15px; }
+        .manual-code-btn { position: absolute; bottom: 40px; width: 80%; background: transparent; border: 2px solid var(--m-blue); color: var(--m-blue); padding: 15px; border-radius: 30px; font-weight: 700; }
 
         /* DATA CARDS */
         .data-card { background: var(--card); border-radius: 18px; margin: 0 15px 20px; padding: 20px; }
@@ -88,11 +107,6 @@
         .data-item:last-child { border: none; }
         .data-item .lb { font-size: 11px; color: var(--text-gray); margin-bottom: 4px; }
         .data-item .vl { font-size: 20px; font-weight: 700; }
-
-        /* ACCORDION */
-        .accordion-btn { display: flex; justify-content: space-between; align-items: center; width: 100%; background: none; border: none; color: white; padding: 15px 0; cursor: pointer; font-size: 19px; font-weight: 700; }
-        .accordion-content { display: none; margin-top: 15px; }
-        .accordion-content.active { display: block; }
 
         /* LISTS (SERVICES & MORE) */
         .sect-label { font-size: 18px; font-weight: 900; padding: 25px 20px 12px; color: var(--text); }
@@ -109,10 +123,14 @@
         .qr-menu-item img.main-ico { width: 30px; margin-right: 20px; }
         .qr-menu-item .txt h4 { margin: 0; font-size: 18px; font-weight: 700; }
         .qr-menu-item .txt p { margin: 5px 0 0; color: var(--text-gray); font-size: 14px; line-height: 1.3; }
-        .qr-menu-item .arr-right { position: absolute; right: 20px; width: 14px; opacity: 0.3; }
 
-        .progress-container { width: 80%; height: 4px; background: #333; border-radius: 2px; margin: 20px auto; overflow: hidden; }
-        .progress-bar { height: 100%; background: var(--m-blue); width: 100%; transition: width 1s linear; }
+        .qr-footer-card { background: var(--card); border-radius: 18px; margin: 20px 15px; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; }
+        .qr-footer-item { padding: 20px; display: flex; justify-content: center; border-right: 1px solid var(--border); }
+        .qr-footer-item:last-child { border: none; }
+        .qr-footer-item img { height: 35px; }
+
+        .progress-container { width: 85%; height: 6px; background: #333; border-radius: 3px; margin: 20px auto; overflow: hidden; }
+        .progress-bar { height: 100%; background: var(--m-blue); width: 100%; }
 
         /* SETUP */
         #view-setup { padding: 25px; background: var(--bg); position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 2000; overflow-y: auto; }
@@ -122,14 +140,14 @@
         /* NAV */
         .bottom-navbar { position: fixed; bottom: 0; width: 100%; height: 95px; background: var(--card); border-top: 1px solid var(--border); display: flex; justify-content: space-around; align-items: center; padding-bottom: 20px; z-index: 1000; }
         .nav-link { display: flex; flex-direction: column; align-items: center; color: var(--text-gray); font-size: 11px; text-decoration: none; flex: 1; }
-        .nav-link img { width: 26px; margin-bottom: 6px; opacity: 0.5; }
+        .nav-link img { width: 28px; margin-bottom: 6px; opacity: 0.5; }
         .nav-link.active { color: var(--m-blue); }
         .nav-link.active img { opacity: 1; filter: saturate(100%) brightness(150%); }
     </style>
 </head>
 <body>
 
-    <!-- SETUP (TYLKO JEŚLI BRAK DANYCH) -->
+    <!-- SETUP -->
     <div id="view-setup" style="display: none;">
         <div class="setup-win">
             <h2 style="text-align:center; margin-bottom:20px;">Konfiguracja Profilu</h2>
@@ -161,12 +179,9 @@
             <img src="coi_common_ui_ic_mobywatel_logo.svg" style="width: 28px;">
             <div class="head-icons"><img src="ab013_notifications.svg"></div>
         </div>
-        <div class="title-box">
-            <h1>Dokumenty</h1>
-            <div class="title-links"><span>Dostosuj</span><span>Dodaj</span></div>
-        </div>
+        <div class="title-box"><h1>Dokumenty</h1><div class="title-links"><span>Dostosuj</span><span>Dodaj</span></div></div>
         <div class="dash-card" onclick="showView('doc')">
-            <img src="coi_common_ui_ic_mobywatel_logo.svg" class="eagle-water">
+            <div class="eagle-water-box"><img src="godlo.gif"></div>
             <h2>mDowód</h2>
             <img src="coi_common_ui_ic_document_id.svg" style="position: absolute; bottom: 20px; right: 20px; width: 52px; opacity: 0.15;">
         </div>
@@ -191,12 +206,17 @@
             </div>
         </div>
         <div class="status-pill"><img src="checkmark.svg"><span>Dokument ważny</span></div>
+        
+        <div class="doc-actions">
+            <div class="doc-btn-circ" onclick="showView('qr-scanner')"><img src="ai001_scanner_qr.svg"></div>
+            <div class="doc-btn-circ"><img src="flaga.gif"></div>
+            <div class="doc-btn-circ"><img src="checkmark.svg"></div>
+            <div class="doc-btn-circ"><img src="ab010_more.svg"></div>
+        </div>
+
         <div class="data-card">
             <div class="tag">Seria i numer mDowodu</div>
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-                <span class="big-val" id="doc-serial">---- -----</span>
-                <button style="background: #002e5d; color: #007aff; border:none; padding: 7px 18px; border-radius: 20px; font-weight:700;">Kopiuj</button>
-            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center;"><span class="big-val" id="doc-serial">---- -----</span><button style="background: #002e5d; color: #007aff; border:none; padding: 7px 18px; border-radius: 20px; font-weight:700;">Kopiuj</button></div>
             <div class="data-item"><div class="lb">Imię ojca</div><div class="vl" id="out-fn">---</div></div>
             <div class="data-item"><div class="lb">Imię matki</div><div class="vl" id="out-mn">---</div></div>
             <div class="accordion">
@@ -230,15 +250,6 @@
             <a href="#" class="list-row"><div class="ico-sq"><img src="da025_ticket.svg"></div><div class="txt-main">Mandaty</div><div class="arr"><img src="arrow.svg"></div></a>
             <a href="#" class="list-row"><div class="ico-sq"><img src="da035_bezpiecznie_w_sieci.svg"></div><div class="txt-main">Bezpiecznie w sieci</div><div class="arr"><img src="arrow.svg"></div></a>
         </div>
-        <div class="sect-label">Zdrowie</div>
-        <div class="list-box">
-            <a href="#" class="list-row"><div class="ico-sq"><img src="recepta.png"></div><div class="txt-main">Recepty</div><div class="arr"><img src="arrow.svg"></div></a>
-        </div>
-        <div class="sect-label">Sprawy urzędowe</div>
-        <div class="list-box">
-            <a href="#" class="list-row"><div class="ico-sq"><img src="ac001_services.svg"></div><div class="txt-main">Załatw sprawę</div><div class="arr"><img src="arrow.svg"></div></a>
-            <a href="#" class="list-row"><div class="ico-sq"><img src="wybory.png"></div><div class="txt-main">Wybory</div><div class="arr"><img src="arrow.svg"></div></a>
-        </div>
     </div>
 
     <!-- KOD QR MENU -->
@@ -247,7 +258,7 @@
         <div class="title-box"><h1>Kod QR</h1></div>
         <div style="padding: 20px; color: var(--text-gray); line-height: 1.4;">Dzięki tej funkcji zalogujesz się do usług w internecie i potwierdzisz cyfrowe dokumenty...</div>
         <div style="padding: 15px;">
-            <div class="qr-menu-item"><img src="ai001_scanner_qr.svg" class="main-ico"><div class="txt"><h4>Zeskanuj kod QR</h4><p>Zaloguj się do strony internetowej lub potwierdź swój cyfrowy dokument.</p></div><img src="arrow.svg" class="arr-right"></div>
+            <div class="qr-menu-item" onclick="showView('qr-scanner')"><img src="ai001_scanner_qr.svg" class="main-ico"><div class="txt"><h4>Zeskanuj kod QR</h4><p>Zaloguj się do strony internetowej lub potwierdź swój cyfrowy dokument.</p></div><img src="arrow.svg" class="arr-right"></div>
             <div class="qr-menu-item" onclick="showView('qr-real')"><img src="ai001_scanner_qr.svg" class="main-ico"><div class="txt"><h4>Pokaż kod QR</h4><p>Sprawdź cyfrowy dokument drugiej osoby.</p></div><img src="arrow.svg" class="arr-right"></div>
         </div>
     </div>
@@ -255,11 +266,30 @@
     <!-- QR REAL -->
     <div id="view-qr-real" class="view">
         <div class="doc-nav"><a href="javascript:void(0)" class="back" onclick="showView('qr-menu')"><img src="arrow.svg"> Wróć</a><span>Kod QR</span><img src="coi_common_ui_ic_help.svg" class="help-ico"></div>
-        <div style="text-align:center; padding: 40px 20px;">
-            <div style="background:white; padding:20px; border-radius:20px; display:inline-block; margin-bottom:20px;"><img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=mOby-Final-V6" style="width:250px;"></div>
+        <div style="padding: 20px;">
+            <h1 style="font-size: 32px; font-weight: 900; margin-bottom: 10px;">Pokaż kod QR</h1>
+            <p style="color: var(--text-gray); line-height: 1.4;">Poproś osobę, której sprawdzasz dokument, aby zeskanowała lub przepisała ten kod w swojej aplikacji mObywatel.</p>
+        </div>
+        <div style="text-align:center; padding: 20px;">
+            <div style="background:white; padding:20px; border-radius:20px; display:inline-block; margin-bottom:20px;"><img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=mOby-Final-GoldV7" style="width:250px;"></div>
             <div style="font-size: 50px; font-weight: 800; margin-bottom: 5px;" id="qr-num">213755</div>
             <div class="progress-container"><div class="progress-bar" id="qr-progress"></div></div>
             <div style="font-weight:600; font-size: 14px;">Kod wygaśnie za: <span id="qr-timer">4 min 00 sek.</span></div>
+        </div>
+        <div class="qr-footer-card">
+            <div class="qr-footer-item"><img src="flaga.gif"></div>
+            <div class="qr-footer-item"><img src="godlo.gif"></div>
+        </div>
+    </div>
+
+    <!-- QR SCANNER -->
+    <div id="view-qr-scanner" class="view">
+        <div class="doc-nav"><a href="javascript:void(0)" class="back" onclick="showView('qr-menu')"><img src="arrow.svg"> Kod QR</a><span>Zeskanuj kod QR</span><img src="coi_common_ui_ic_help.svg" class="help-ico"></div>
+        <div class="scanner-container">
+            <div class="scanner-msg">Umieść kod QR w ramce, aby go zeskanować.</div>
+            <div class="warning-box"><img src="warning.svg" style="width:24px;"><p>Upewnij się, że kod QR pochodzi z wiarygodnego źródła.</p></div>
+            <div class="viewfinder"><div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div></div>
+            <button class="manual-code-btn">Wpisz kod</button>
         </div>
     </div>
 
@@ -285,11 +315,11 @@
         <a href="javascript:void(0)" class="nav-link active" id="btn-dash" onclick="showView('dash')"><img src="ab001_home.svg"><span>Dokumenty</span></a>
         <a href="javascript:void(0)" class="nav-link" id="btn-services" onclick="showView('services')"><img src="ac001_services.svg"><span>Usługi</span></a>
         <a href="javascript:void(0)" class="nav-link" id="btn-qr-menu" onclick="showView('qr-menu')"><img src="ai001_scanner_qr.svg"><span>Kod QR</span></a>
-        <a href="javascript:void(0)" class="nav-link" id="btn-more" onclick="showView('more')"><img src="ab010_more.svg"><span>Więcej</span></a>
+        <a href="javascript:void(0)" class="nav-link" id="btn-more" onclick="showView('more')"><img src="ab010_more.svg" style="border-radius:50%"><span>Więcej</span></a>
     </div>
 
     <script>
-        let userData = JSON.parse(localStorage.getItem('mObyFinalGoldV6')) || null;
+        let userData = JSON.parse(localStorage.getItem('mObyFinalGoldV7')) || null;
 
         function toggleAccordion() { document.getElementById('acc-content').classList.toggle('active'); }
 
@@ -297,28 +327,27 @@
             document.querySelectorAll('.view').forEach(x => x.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(x => x.classList.remove('active'));
             const view = document.getElementById('view-' + v);
-            if (view) view.classList.add('active');
-            const btn = document.getElementById('btn-' + v) || document.getElementById('btn-dash');
-            if (btn) btn.classList.add('active');
-            window.scrollTo(0, 0);
+            if(view) view.classList.add('active');
+            const btn = document.getElementById('btn-' + (v.includes('qr') ? 'qr-menu' : v)) || document.getElementById('btn-dash');
+            if(btn) btn.classList.add('active');
+            window.scrollTo(0,0);
         }
 
         function generatePESEL(dStr, gender) {
-            const p = dStr.split('.');
+            const p = dStr.split('.'); 
             let d = parseInt(p[0]), m = parseInt(p[1]), y = parseInt(p[2]);
             if (y >= 2000) m += 20;
-            let rr = y.toString().slice(-2), mm = m.toString().padStart(2, '0'), dd = d.toString().padStart(2, '0');
-            let rand3 = Math.floor(100 + Math.random() * 900).toString();
-            let genderDigit = (gender === "KOBIETA") ? [0, 2, 4, 6, 8][Math.floor(Math.random() * 5)] : [1, 3, 5, 7, 9][Math.floor(Math.random() * 5)];
-            let base = rr + mm + dd + rand3 + genderDigit;
-            const weights = [1, 3, 7, 9, 1, 3, 7, 9, 1, 3];
-            let sum = 0;
-            for (let i = 0; i < 10; i++) sum += parseInt(base[i]) * weights[i];
+            let rr = y.toString().slice(-2), mm = m.toString().padStart(2,'0'), dd = d.toString().padStart(2,'0');
+            let rand3 = Math.floor(100 + Math.random()*900).toString();
+            let gDigit = (gender === "KOBIETA") ? [0,2,4,6,8][Math.floor(Math.random()*5)] : [1,3,5,7,9][Math.floor(Math.random()*5)];
+            let base = rr + mm + dd + rand3 + gDigit;
+            const w = [1, 3, 7, 9, 1, 3, 7, 9, 1, 3];
+            let sum = 0; for(let i=0; i<10; i++) sum += parseInt(base[i]) * w[i];
             let control = (10 - (sum % 10)) % 10;
             return base + control;
         }
 
-        document.getElementById('setup-form').addEventListener('submit', function (e) {
+        document.getElementById('setup-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const img = document.getElementById('in-photo').files[0];
             const reader = new FileReader();
@@ -330,17 +359,17 @@
                     mn: document.getElementById('in-mn').value, fnr: document.getElementById('in-fnr').value,
                     mnr: document.getElementById('in-mnr').value, pb: document.getElementById('in-pb').value,
                     adr: document.getElementById('in-adr').value, da: document.getElementById('in-da').value,
-                    photo: photo, serial: "GIGC " + Math.floor(10000 + Math.random() * 90000)
+                    photo: photo, serial: "GIGC " + Math.floor(10000 + Math.random()*90000)
                 };
-                localStorage.setItem('mObyFinalGoldV6', JSON.stringify(userData));
+                localStorage.setItem('mObyFinalGoldV7', JSON.stringify(userData));
                 applyData();
             };
-            if (img) { reader.onload = (ev) => finish(ev.target.result); reader.readAsDataURL(img); }
+            if(img) { reader.onload = (ev) => finish(ev.target.result); reader.readAsDataURL(img); }
             else finish("");
         });
 
         function applyData() {
-            if (!userData) { document.getElementById('view-setup').style.display = 'block'; return; }
+            if(!userData) { document.getElementById('view-setup').style.display = 'block'; return; }
             document.getElementById('view-setup').style.display = 'none';
             document.getElementById('doc-n1').innerText = userData.n1.toUpperCase();
             document.getElementById('doc-n3').innerText = userData.n3.toUpperCase();
@@ -362,16 +391,16 @@
 
         let qT = 240;
         setInterval(() => {
-            qT--; if (qT < 0) qT = 240;
-            const m = Math.floor(qT / 60), s = qT % 60;
-            if (document.getElementById('qr-timer')) document.getElementById('qr-timer').innerText = `${m} min ${s.toString().padStart(2, '0')} sek.`;
-            if (document.getElementById('qr-progress')) document.getElementById('qr-progress').style.width = (qT / 240 * 100) + "%";
-            if (qT % 10 === 0 && document.getElementById('qr-num')) document.getElementById('qr-num').innerText = Math.floor(100000 + Math.random() * 900000);
+            qT--; if(qT < 0) qT = 240;
+            const m = Math.floor(qT/60), s = qT%60;
+            if(document.getElementById('qr-timer')) document.getElementById('qr-timer').innerText = `${m} min ${s.toString().padStart(2,'0')} sek.`;
+            if(document.getElementById('qr-progress')) document.getElementById('qr-progress').style.width = (qT / 240 * 100) + "%";
+            if(qT % 10 === 0 && document.getElementById('qr-num')) document.getElementById('qr-num').innerText = Math.floor(100000 + Math.random()*900000);
         }, 1000);
 
         function updateClock() {
             const n = new Date();
-            if (document.getElementById('clock')) document.getElementById('clock').innerText = n.toLocaleTimeString('pl-PL') + ' ' + n.toLocaleDateString('pl-PL');
+            if(document.getElementById('clock')) document.getElementById('clock').innerText = n.toLocaleTimeString('pl-PL') + ' ' + n.toLocaleDateString('pl-PL');
         }
         setInterval(updateClock, 1000); updateClock();
         applyData();
