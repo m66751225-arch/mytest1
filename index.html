@@ -3,11 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>mObywatel 2.0</title>
     <link rel="icon" type="image/svg+xml" href="coi_common_ui_ic_mobywatel_logo.svg">
     <link rel="apple-touch-icon" href="coi_common_ui_ic_mobywatel_logo.svg">
     <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#121212">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -501,7 +504,6 @@
         <div class="setup-win">
             <h1>mObywatel v.2</h1>
             <h2>TIP! użyj zdjecia bez tla i czarnobiale!!!</h2>
-            <h2>!!!PO KLIKNIECIU RESETUJ APLIKACJE, APILACJA WRACA DO FORMULARZA!!!</h2>
             <h2>Debilami nie jestescie poradzicie se</h2>
             <h2 style="text-align:center; margin-bottom:20px;">Konfiguracja Profilu</h2>
             <form id="setup-form">
@@ -1280,6 +1282,15 @@
         }
         setInterval(updateClock, 1000); updateClock();
         applyData();
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Service Worker registered', reg))
+                    .catch(err => console.log('Service Worker registration failed', err));
+            });
+        }
     </script>
 </body>
 
