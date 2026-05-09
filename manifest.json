@@ -1,10 +1,11 @@
 {
-    "name": "mObywatel",
-    "short_name": "mObywatel",
-    "display": "standalone",
-    "background_color": "#FFFFFF",
-    "theme_color": "#FFFFFF",
-    "description": "Aplikacja demonstracyjna dla gitów",
+  "name": "mObywatel 2.0",
+  "short_name": "mObywatel",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#121212",
+  "description": "Replika aplikacji mObywatel",
+  "start_url": "./index.html",
   "icons": [
     {
       "src": "coi_common_ui_ic_mobywatel_logo.svg",
