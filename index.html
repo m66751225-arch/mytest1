@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>mObywatel 2.0</title>
     <link rel="icon" type="image/svg+xml" href="coi_common_ui_ic_mobywatel_logo.svg">
     <link rel="apple-touch-icon" href="coi_common_ui_ic_mobywatel_logo.svg">
@@ -529,17 +530,31 @@
                 <input type="text" id="in-issue" placeholder="Data wydania (DD.MM.YYYY)">
                 <div
                     style="border: 2px dashed #444; padding: 20px; text-align: center; border-radius: 15px; margin-bottom: 15px; background: #2c2c2e; position: relative; min-height: 100px; display: flex; align-items: center; justify-content: center;">
-                    <span id="photo-status">Dodaj zdjęcie profilowe<br><small>(AI usunie tło i ustawi filtry)</small></span>
+                    <span id="photo-status">Dodaj zdjęcie profilowe<br><small>(AI usunie tło i ustawi
+                            filtry)</small></span>
                     <img id="setup-photo-preview" style="display:none; max-height: 150px; border-radius: 10px;">
                     <input type="file" id="in-photo" accept="image/*"
                         style="position:absolute; top:0; left:0; width:100%; height:100%; opacity:0; cursor:pointer;">
                     <!-- Loader AI -->
-                    <div id="ai-loader" style="display:none; position:absolute; inset:0; background:rgba(0,0,0,0.8); border-radius:15px; flex-direction:column; align-items:center; justify-content:center; z-index:10;">
-                        <div style="width:24px; height:24px; border:3px solid #333; border-top:3px solid #007aff; border-radius:50%; animation: spin 1s linear infinite; margin-bottom:10px;"></div>
+                    <div id="ai-loader"
+                        style="display:none; position:absolute; inset:0; background:rgba(0,0,0,0.8); border-radius:15px; flex-direction:column; align-items:center; justify-content:center; z-index:10;">
+                        <div
+                            style="width:24px; height:24px; border:3px solid #333; border-top:3px solid #007aff; border-radius:50%; animation: spin 1s linear infinite; margin-bottom:10px;">
+                        </div>
                         <span style="font-size:12px; color:white;">AI pracuje...</span>
                     </div>
                 </div>
-                <style>@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }</style>
+                <style>
+                    @keyframes spin {
+                        0% {
+                            transform: rotate(0deg);
+                        }
+
+                        100% {
+                            transform: rotate(360deg);
+                        }
+                    }
+                </style>
                 <button type="submit" id="setup-submit"
                     style="background:var(--m-blue); color:white; border:none; padding:18px; width:100%; border-radius:14px; font-weight:900;">URUCHOM</button>
             </form>
@@ -629,11 +644,13 @@
         </div>
         <div class="mo-floating-actions">
             <div class="mo-action-btn" onclick="showView('qr-scanner')">
-                <div class="circle"><img src="0c3b7219-e81c-4d48-9f13-8a90cf30aab9.jpg" style="width: 28px; height: 28px;"></div>
+                <div class="circle"><img src="0c3b7219-e81c-4d48-9f13-8a90cf30aab9.jpg"
+                        style="width: 28px; height: 28px;"></div>
                 <span>Potwierdź swoje dane</span>
             </div>
             <div class="mo-action-btn" onclick="showView('doc-data')">
-                <div class="circle"><img src="9b8151a3-5248-4be2-9c18-daccf72b91f4.jpg" style="width: 44px; height: auto; object-fit: contain;"></div>
+                <div class="circle"><img src="9b8151a3-5248-4be2-9c18-daccf72b91f4.jpg"
+                        style="width: 44px; height: auto; object-fit: contain;"></div>
                 <span>Dane dowodu osobistego</span>
             </div>
             <div class="mo-action-btn" onclick="showView('pesel-block')">
@@ -642,7 +659,8 @@
                 <span>Zastrzeż PESEL</span>
             </div>
             <div class="mo-action-btn" onclick="showView('other-shortcuts')">
-                <div class="circle"><img src="ab010_more.svg" style="filter: brightness(0) invert(1); width: 24px; height: 24px;">
+                <div class="circle"><img src="ab010_more.svg"
+                        style="filter: brightness(0) invert(1); width: 24px; height: 24px;">
                 </div>
                 <span>Pozostałe skróty</span>
             </div>
@@ -900,7 +918,10 @@
                 <div class="arrow"></div>
             </div>
             <div class="mo-list-item">
-                <div class="icon" style="width: 44px; height: 44px; margin-right: 15px; background: transparent; border-radius: 50%;"><img src="401c7666-d7e8-49d7-a4f7-8fd09d9a9ce5.jpg" style="width: 24px; height: 24px; object-fit: contain; border-radius: 0;"></div>
+                <div class="icon"
+                    style="width: 44px; height: 44px; margin-right: 15px; background: transparent; border-radius: 50%;">
+                    <img src="401c7666-d7e8-49d7-a4f7-8fd09d9a9ce5.jpg"
+                        style="width: 24px; height: 24px; object-fit: contain; border-radius: 0;"></div>
                 <div class="text">Historia pojazdu</div>
                 <div class="arrow"></div>
             </div>
@@ -909,7 +930,8 @@
         <div class="mo-section-label">Opłaty i podatki</div>
         <div class="mo-list">
             <div class="mo-list-item">
-                <div class="icon"><img src="2693c19e-183f-4de3-ac6e-8d6c0b04d10d.jpg" style="width: 22px; height: 22px; object-fit: contain;"></div>
+                <div class="icon"><img src="2693c19e-183f-4de3-ac6e-8d6c0b04d10d.jpg"
+                        style="width: 22px; height: 22px; object-fit: contain;"></div>
                 <div class="text">ePłatności</div>
                 <div class="arrow"></div>
             </div>
@@ -951,8 +973,7 @@
                 <div class="arrow"></div>
             </div>
             <div class="mo-list-item">
-                <div class="icon"><img src="55fe9ece-6d3b-4d8a-a9bf-bb0dc9e342ce.jpg"
-                        style="width: 28px;">
+                <div class="icon"><img src="55fe9ece-6d3b-4d8a-a9bf-bb0dc9e342ce.jpg" style="width: 28px;">
                 </div>
                 <div class="text">Jakość powietrza</div>
                 <div class="arrow"></div>
@@ -981,7 +1002,8 @@
                     <div class="arrow"></div>
                 </div>
                 <div class="mo-list-item" onclick="showView('qr-real')">
-                    <div class="icon"><img src="ai003_check_document.svg" style="filter: brightness(0); width: 28px;"></div>
+                    <div class="icon"><img src="ai003_check_document.svg" style="filter: brightness(0); width: 28px;">
+                    </div>
                     <div class="text">
                         <div style="font-weight: 700;">Pokaż kod QR</div>
                         <div style="font-size: 13px; color: var(--mo-text-gray); font-weight: 400; margin-top: 4px;">
@@ -1042,11 +1064,13 @@
             <div style="font-weight:600; font-size: 14px;">Kod wygaśnie za: <span id="qr-timer">4 min 00 sek.</span>
             </div>
             <div style="display: flex; justify-content: center; gap: 15px; margin-top: 30px;">
-                <div style="background: #2c2c2e; padding: 12px; border-radius: 12px; display: flex; align-items: center; gap: 10px; min-width: 140px;">
+                <div
+                    style="background: #2c2c2e; padding: 12px; border-radius: 12px; display: flex; align-items: center; gap: 10px; min-width: 140px;">
                     <img src="flaga.gif" style="width: 24px; height: 16px; border-radius: 2px;">
                     <span style="font-size: 13px; font-weight: 600;">POLSKA</span>
                 </div>
-                <div style="background: #2c2c2e; padding: 12px; border-radius: 12px; display: flex; align-items: center; gap: 10px; min-width: 140px;">
+                <div
+                    style="background: #2c2c2e; padding: 12px; border-radius: 12px; display: flex; align-items: center; gap: 10px; min-width: 140px;">
                     <img src="godlo.gif" style="width: 20px;">
                     <span style="font-size: 13px; font-weight: 600;">RZECZPOSPOLITA</span>
                 </div>
@@ -1087,7 +1111,8 @@
                 <div class="arrow"></div>
             </div>
             <div class="mo-list-item">
-                <div class="icon"><img src="e205f854-f406-4d87-8eea-a21f5ffda95b.jpg" style="width: 22px; height: 22px; object-fit: contain;"></div>
+                <div class="icon"><img src="e205f854-f406-4d87-8eea-a21f5ffda95b.jpg"
+                        style="width: 22px; height: 22px; object-fit: contain;"></div>
                 <div class="text">Wydane certyfikaty</div>
                 <div class="arrow"></div>
             </div>
@@ -1197,15 +1222,15 @@
         // --- LOGIKA PRZETWARZANIA ZDJĘCIA AI ---
         let processedPhotoBase64 = "";
 
-        document.getElementById('in-photo').addEventListener('change', async function(e) {
+        document.getElementById('in-photo').addEventListener('change', async function (e) {
             if (e.target.files.length === 0) return;
-            
+
             const file = e.target.files[0];
             const loader = document.getElementById('ai-loader');
             const submitBtn = document.getElementById('setup-submit');
             const previewImg = document.getElementById('setup-photo-preview');
             const statusText = document.getElementById('photo-status');
-            
+
             loader.style.display = 'flex';
             submitBtn.disabled = true;
 
@@ -1214,7 +1239,7 @@
                 const blob = await imglyRemoveBackground(file);
                 const img = new Image();
                 img.src = URL.createObjectURL(blob);
-                
+
                 img.onload = () => {
                     const canvas = document.createElement('canvas');
                     const ctx = canvas.getContext('2d');
@@ -1236,7 +1261,7 @@
                     const data = imageData.data;
                     for (let i = 0; i < data.length; i += 4) {
                         const avg = (data[i] * 0.3 + data[i + 1] * 0.59 + data[i + 2] * 0.11);
-                        data[i] = data[i+1] = data[i+2] = avg;
+                        data[i] = data[i + 1] = data[i + 2] = avg;
                     }
                     ctx.putImageData(imageData, 0, 0);
 
@@ -1245,7 +1270,7 @@
                     previewImg.src = processedPhotoBase64;
                     previewImg.style.display = 'block';
                     statusText.style.display = 'none';
-                    
+
                     loader.style.display = 'none';
                     submitBtn.disabled = false;
                 };
@@ -1298,7 +1323,7 @@
                 localStorage.setItem('mObyFinalGoldV6', JSON.stringify(userData));
                 applyData();
             };
-            
+
             // Używamy przetworzonego zdjęcia AI jeśli istnieje
             finish(processedPhotoBase64);
         });
